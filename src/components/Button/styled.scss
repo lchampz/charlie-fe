@@ -1,0 +1,17 @@
+@import '../../scss/variables';
+
+.custom-btn {
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+    color: $light-pink;
+    background-color: transparent;
+    border: 2px solid $light-pink;
+    border-radius: 30px;
+    transition: all 0.4s ease-in-out;
+    font-weight: bold;
+
+    &:hover {
+        color: $dark-grey;
+        background-color: $light-pink;
+    }
+}
