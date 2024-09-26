@@ -1,7 +1,10 @@
+@import "../../scss/variables";
+
 .login-wrapper {
     display: flex;
     width: 100%;
     height: 100%;
+    position: relative; 
 }
 
 .column {
@@ -11,16 +14,74 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 50px;
+    gap: 65px;
+    transition: all 0.5s ease-in-out;
 
     .bg-login {
         width: 100%;
         height: 100%;
-        background-repeat: repeat;
+        
     }
 
     .logo {
         width: 300px;
-        
+    }
+
+    .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .login-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    @media screen and (max-width: $medium){
+        width: 100%;
+        transition: all 0.5s ease-in;
+    }
+}
+
+#bg-slider {
+    position: absolute; 
+    width: 50%;
+    height: 100%; 
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.is-login {
+    transform: translateX(0); 
+    opacity: 1; 
+}
+
+.is-register {
+    transform: translateX(100%); 
+    
+}
+
+.form-register {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    flex-direction: column;
+}
+
+@media screen and (max-width: $medium) {
+    #bg-slider {
+        width: 100%; 
+    }
+
+    .is-login,
+    .is-register {
+        width: 0; 
+        visibility: hidden; 
+        opacity: 0; 
+    }
+
+    .not-show {
+        display: none;
     }
 }

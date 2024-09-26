@@ -9,9 +9,26 @@
     border-radius: 30px;
     transition: all 0.4s ease-in-out;
     font-weight: bold;
+    font-size: medium;
 
     &:hover {
         color: $dark-grey;
         background-color: $light-pink;
+    }
+}
+
+.custom-link {
+    cursor: pointer;
+    border: none;
+    color: $light-pink;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    transition: all 0.4s ease-in-out;
+    font-weight: bold;
+    font-size: medium;
+
+    &:hover {
+       
+        border-bottom: 2px solid $light-pink;
     }
 }

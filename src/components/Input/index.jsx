@@ -10,7 +10,8 @@ const Input = ({
   password = false,
   type = "text",
   value,
-  width = "fit-content"
+  width = "fit-content",
+  padding
 }) => {
   // props desestruturadas
   const [visiblePass, setVisiblePass] = useState(false); //state que vai controlar se a senha é visivel ou não
@@ -20,9 +21,9 @@ const Input = ({
   const handleChangePassVisibility = () => setVisiblePass(!visiblePass); //altera a visibilidade da senha
 
   return (
-    <div className="pass-wrapper">
+    <div className="pass-wrapper" style={{width: width}}>
       <input
-        style={{minWidth: width}}
+        style={{padding: padding}}
         onChange={handleChange}
         value={value}
         placeholder={placeholder}
