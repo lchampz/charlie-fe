@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import api from "../../services/API";
+
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import PageWrapper from "../../components/PageWrapper";
@@ -10,10 +12,43 @@ import "./styled.scss";
 
 const Login = () => {
   const [isRegister, setIsRegister] = useState(false);
-
+  const [loginForm, setLoginForm] = useState({
+    username: "",
+    pass: "",
+  });
+  const [registerForm, setRegisterForm] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+    cpf: "",
+    logradouro: "",
+    num: "",
+    cep: "",
+    pass: "",
+  })
+  
   const handleToggleRegister = () => {
     setIsRegister((prev) => !prev);
   };
+
+  const handleLoginChange = (e) => {
+    
+    setLoginForm({...loginForm, username: e});
+  }
+
+  const handleRegisterChange = (e) => {
+    const { value, name } = e;
+    setRegisterForm({...registerForm, [name]: value});
+  }
+
+  const handleTeste = (e) => {
+    console.log(e);
+  }
+
+  const getApi = async () => {
+    console.log(loginForm)
+    console.log(await api.GET("/character/525"));
+  }
 
   const RegisterForm = () => {
     return (
@@ -31,21 +66,21 @@ const Login = () => {
         <span
           style={{ display: "flex", gap: "10px", justifyContent: "stretch" }}
         >
-          <Input placeholder={"nome..."} width="100%" padding={"1rem"} />
-          <Input placeholder={"sobrenome..."} width="100%" padding={"1rem"} />
+          <Input change={handleRegisterChange} name="name" value={registerForm.name} placeholder={"nome..."} width="100%" padding={"1rem"} />
+          <Input change={handleRegisterChange} name="lastname" value={registerForm.lastname} placeholder={"sobrenome..."} width="100%" padding={"1rem"} />
         </span>
-        <Input placeholder={"email..."} width="100%" padding={"1rem"} />
+        <Input change={handleRegisterChange} name="email" value={registerForm.email} placeholder={"email..."} width="100%" padding={"1rem"} />
         <span style={{ display: "flex", gap: "10px" }}>
-          <Input placeholder={"CPF..."} width="100%" padding={"1rem"} />
-          <Input placeholder={"CEP..."} width="100%" padding={"1rem"} />
+          <Input change={handleRegisterChange} name="cpf" value={registerForm.cpf} placeholder={"CPF..."} width="100%" padding={"1rem"} />
+          <Input change={handleRegisterChange} name="cep" value={registerForm.cep} placeholder={"CEP..."} width="100%" padding={"1rem"} />
         </span>
         <span
           style={{ display: "flex", gap: "10px", justifyContent: "stretch" }}
         >
-          <Input placeholder={"endereço..."} width="70%" padding={"1rem"} />
-          <Input placeholder={"Nº..."} width="30%" padding={"1rem"} />
+          <Input change={handleRegisterChange} name="logradouro" value={registerForm.logradouro} placeholder={"endereço..."} width="70%" padding={"1rem"} />
+          <Input change={handleRegisterChange} name="num" value={registerForm.num} placeholder={"Nº..."} width="30%" padding={"1rem"} />
         </span>
-        <Input placeholder={"senha..."} width="100%" padding={"1rem"} password/>
+        <Input change={handleRegisterChange} name="pass" value={registerForm.pass} placeholder={"senha..."} width="100%" padding={"1rem"} password/>
         <span
           style={{
             marginTop: "2rem",
@@ -77,8 +112,9 @@ const Login = () => {
       <>
         <img className="logo" src={Logo} alt="Logo" />
         <div className="input-wrapper">
-          <Input placeholder={"login..."} width="300px" padding={"1rem"} />
-          <Input
+          <Input change={handleLoginChange} name="username" value={loginForm.username} placeholder={"login..."} width="300px" padding={"1rem"} />
+          <Input change={handleLoginChange}
+            name="pass" value={loginForm.pass}
             placeholder={"senha..."}
             width="300px"
             padding={"1rem"}
@@ -87,7 +123,7 @@ const Login = () => {
         </div>
 
         <span className="login-btns">
-          <Button padding={"0.5rem 2rem"} placeholder={"Login"} width="200px" />
+          <Button padding={"0.5rem 2rem"} click={getApi} placeholder={"Login"} width="200px" />
           <Button
             padding={"0.5rem 2rem"}
             width="200px"

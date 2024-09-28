@@ -10,6 +10,7 @@ const Input = ({
   password = false,
   type = "text",
   value,
+  name,
   width = "fit-content",
   padding
 }) => {
@@ -24,6 +25,7 @@ const Input = ({
     <div className="pass-wrapper" style={{width: width}}>
       <input
         style={{padding: padding}}
+        name={name}
         onChange={handleChange}
         value={value}
         placeholder={placeholder}
