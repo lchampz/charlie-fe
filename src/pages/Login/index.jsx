@@ -31,20 +31,6 @@ const Login = () => {
     setIsRegister((prev) => !prev);
   };
 
-  const handleLoginChange = (e) => {
-    
-    setLoginForm({...loginForm, username: e});
-  }
-
-  const handleRegisterChange = (e) => {
-    const { value, name } = e;
-    setRegisterForm({...registerForm, [name]: value});
-  }
-
-  const handleTeste = (e) => {
-    console.log(e);
-  }
-
   const getApi = async () => {
     console.log(loginForm)
     console.log(await api.GET("/character/525"));
@@ -66,21 +52,21 @@ const Login = () => {
         <span
           style={{ display: "flex", gap: "10px", justifyContent: "stretch" }}
         >
-          <Input change={handleRegisterChange} name="name" value={registerForm.name} placeholder={"nome..."} width="100%" padding={"1rem"} />
-          <Input change={handleRegisterChange} name="lastname" value={registerForm.lastname} placeholder={"sobrenome..."} width="100%" padding={"1rem"} />
+          <Input state={registerForm} setState={setRegisterForm} name="name" value={registerForm.name} placeholder={"nome..."} width="100%" padding={"1rem"} />
+          <Input state={registerForm} setState={setRegisterForm} name="lastname" value={registerForm.lastname} placeholder={"sobrenome..."} width="100%" padding={"1rem"} />
         </span>
-        <Input change={handleRegisterChange} name="email" value={registerForm.email} placeholder={"email..."} width="100%" padding={"1rem"} />
+        <Input state={registerForm} setState={setRegisterForm} name="email" value={registerForm.email} placeholder={"email..."} width="100%" padding={"1rem"} />
         <span style={{ display: "flex", gap: "10px" }}>
-          <Input change={handleRegisterChange} name="cpf" value={registerForm.cpf} placeholder={"CPF..."} width="100%" padding={"1rem"} />
-          <Input change={handleRegisterChange} name="cep" value={registerForm.cep} placeholder={"CEP..."} width="100%" padding={"1rem"} />
+          <Input state={registerForm} setState={setRegisterForm} name="cpf" value={registerForm.cpf} placeholder={"CPF..."} width="100%" padding={"1rem"} />
+          <Input state={registerForm} setState={setRegisterForm} name="cep" value={registerForm.cep} placeholder={"CEP..."} width="100%" padding={"1rem"} />
         </span>
         <span
           style={{ display: "flex", gap: "10px", justifyContent: "stretch" }}
         >
-          <Input change={handleRegisterChange} name="logradouro" value={registerForm.logradouro} placeholder={"endereço..."} width="70%" padding={"1rem"} />
-          <Input change={handleRegisterChange} name="num" value={registerForm.num} placeholder={"Nº..."} width="30%" padding={"1rem"} />
+          <Input state={registerForm} setState={setRegisterForm} name="logradouro" value={registerForm.logradouro} placeholder={"endereço..."} width="70%" padding={"1rem"} />
+          <Input state={registerForm} setState={setRegisterForm} name="num" value={registerForm.num} placeholder={"Nº..."} width="30%" padding={"1rem"} />
         </span>
-        <Input change={handleRegisterChange} name="pass" value={registerForm.pass} placeholder={"senha..."} width="100%" padding={"1rem"} password/>
+        <Input state={registerForm} setState={setRegisterForm} name="pass" value={registerForm.pass} placeholder={"senha..."} width="100%" padding={"1rem"} password/>
         <span
           style={{
             marginTop: "2rem",
@@ -112,8 +98,8 @@ const Login = () => {
       <>
         <img className="logo" src={Logo} alt="Logo" />
         <div className="input-wrapper">
-          <Input change={handleLoginChange} name="username" value={loginForm.username} placeholder={"login..."} width="300px" padding={"1rem"} />
-          <Input change={handleLoginChange}
+          <Input state={loginForm} setState={setLoginForm} name="username" value={loginForm.username} placeholder={"login..."} width="300px" padding={"1rem"} />
+          <Input state={loginForm} setState={setLoginForm}
             name="pass" value={loginForm.pass}
             placeholder={"senha..."}
             width="300px"

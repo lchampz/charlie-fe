@@ -1,38 +1,36 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import CookieShow from "../../assets/pass-icon-show.png";
 import CookieOcult from "../../assets/pass-icon-ocult.png";
 
 import "./styled.scss";
 
-const Input = ({
-  change,
-  placeholder,
-  password = false,
-  type = "text",
-  value,
-  name,
-  width = "fit-content",
-  padding
-}) => {
-  // props desestruturadas
-  const [visiblePass, setVisiblePass] = useState(false); //state que vai controlar se a senha é visivel ou não
+const Input = memo(({ state, setState, placeholder, password = false, type = "text", name, width = "fit-content", padding }) => {
+  const [visiblePass, setVisiblePass] = useState(false);
+  const handleChangePassVisibility = () => setVisiblePass(prev => !prev);
 
-  //Handlers -> tudo que atua após uma ação, ex. "handleClick" será chamada após o click
-  const handleChange = (e) => change(e.target.value); //quando alteramos o valor de um input, o evento "onChange" é ativado (parametro "e"), nisso conseguimos manipular o valor inserido, q ta no obj target.value
-  const handleChangePassVisibility = () => setVisiblePass(!visiblePass); //altera a visibilidade da senha
+  let focusedElement = document.activeElement.id;
+  const id = `${name}_id`;
+
+  const handleChange = (e) => {
+    const _state = {...state, [e.target.name]: e.target.value};
+    setState(_state);
+  }
 
   return (
-    <div className="pass-wrapper" style={{width: width}}>
+    <div className="pass-wrapper" style={{ width }}>
       <input
-        style={{padding: padding}}
+        id={id}
+        key={`${name}_key`}
+        style={{ padding }}
         name={name}
         onChange={handleChange}
-        value={value}
+        value={state[name]}
         placeholder={placeholder}
         type={!password ? type : visiblePass ? "text" : "password"}
         className="custom-input"
+        {...focusedElement === id ? {autoFocus: true} : {}}
       />
-      {password && ( // condicional, se a prop "password" for verdadeira, aparece o cookie q esconde/mostra a senha 
+      {password && (
         <img
           className="pass-visibility-icon"
           onClick={handleChangePassVisibility}
@@ -42,6 +40,6 @@ const Input = ({
       )}
     </div>
   );
-};
+});
 
 export default Input;
