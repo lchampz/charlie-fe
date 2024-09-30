@@ -24,7 +24,7 @@ const Login = () => {
     logradouro: "",
     num: "",
     cep: "",
-    pass: "",
+    registerPass: "",
   })
   
   const handleToggleRegister = () => {
@@ -66,7 +66,7 @@ const Login = () => {
           <Input state={registerForm} setState={setRegisterForm} name="logradouro" value={registerForm.logradouro} placeholder={"endereço..."} width="70%" padding={"1rem"} />
           <Input state={registerForm} setState={setRegisterForm} name="num" value={registerForm.num} placeholder={"Nº..."} width="30%" padding={"1rem"} />
         </span>
-        <Input state={registerForm} setState={setRegisterForm} name="pass" value={registerForm.pass} placeholder={"senha..."} width="100%" padding={"1rem"} password/>
+        <Input state={registerForm} setState={setRegisterForm} name="registerPass" value={registerForm.pass} placeholder={"senha..."} width="100%" padding={"1rem"} password/>
         <span
           style={{
             marginTop: "2rem",
