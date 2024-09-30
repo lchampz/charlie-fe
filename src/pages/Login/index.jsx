@@ -9,6 +9,7 @@ import BG from "../../assets/bgcolor.png";
 import Logo from "../../assets/logo.png";
 
 import "./styled.scss";
+import AlternativeButton from "../../components/Button/AlternativeButton";
 
 const Login = () => {
   const [isRegister, setIsRegister] = useState(false);
@@ -25,16 +26,16 @@ const Login = () => {
     num: "",
     cep: "",
     registerPass: "",
-  })
-  
+  });
+
   const handleToggleRegister = () => {
     setIsRegister((prev) => !prev);
   };
 
   const getApi = async () => {
-    console.log(loginForm)
+    console.log(loginForm);
     console.log(await api.GET("/character/525"));
-  }
+  };
 
   const RegisterForm = () => {
     return (
@@ -52,21 +53,86 @@ const Login = () => {
         <span
           style={{ display: "flex", gap: "10px", justifyContent: "stretch" }}
         >
-          <Input state={registerForm} setState={setRegisterForm} name="name" value={registerForm.name} placeholder={"nome..."} width="100%" padding={"1rem"} />
-          <Input state={registerForm} setState={setRegisterForm} name="lastname" value={registerForm.lastname} placeholder={"sobrenome..."} width="100%" padding={"1rem"} />
+          <Input
+            state={registerForm}
+            setState={setRegisterForm}
+            name="name"
+            value={registerForm.name}
+            placeholder={"nome..."}
+            width="100%"
+            padding={"1rem"}
+          />
+          <Input
+            state={registerForm}
+            setState={setRegisterForm}
+            name="lastname"
+            value={registerForm.lastname}
+            placeholder={"sobrenome..."}
+            width="100%"
+            padding={"1rem"}
+          />
         </span>
-        <Input state={registerForm} setState={setRegisterForm} name="email" value={registerForm.email} placeholder={"email..."} width="100%" padding={"1rem"} />
+        <Input
+          state={registerForm}
+          setState={setRegisterForm}
+          name="email"
+          value={registerForm.email}
+          placeholder={"email..."}
+          width="100%"
+          padding={"1rem"}
+        />
         <span style={{ display: "flex", gap: "10px" }}>
-          <Input state={registerForm} setState={setRegisterForm} name="cpf" value={registerForm.cpf} placeholder={"CPF..."} width="100%" padding={"1rem"} />
-          <Input state={registerForm} setState={setRegisterForm} name="cep" value={registerForm.cep} placeholder={"CEP..."} width="100%" padding={"1rem"} />
+          <Input
+            state={registerForm}
+            setState={setRegisterForm}
+            name="cpf"
+            value={registerForm.cpf}
+            placeholder={"CPF..."}
+            width="100%"
+            padding={"1rem"}
+          />
+          <Input
+            state={registerForm}
+            setState={setRegisterForm}
+            name="cep"
+            value={registerForm.cep}
+            placeholder={"CEP..."}
+            width="100%"
+            padding={"1rem"}
+          />
         </span>
         <span
           style={{ display: "flex", gap: "10px", justifyContent: "stretch" }}
         >
-          <Input state={registerForm} setState={setRegisterForm} name="logradouro" value={registerForm.logradouro} placeholder={"endereço..."} width="70%" padding={"1rem"} />
-          <Input state={registerForm} setState={setRegisterForm} name="num" value={registerForm.num} placeholder={"Nº..."} width="30%" padding={"1rem"} />
+          <Input
+            state={registerForm}
+            setState={setRegisterForm}
+            name="logradouro"
+            value={registerForm.logradouro}
+            placeholder={"endereço..."}
+            width="70%"
+            padding={"1rem"}
+          />
+          <Input
+            state={registerForm}
+            setState={setRegisterForm}
+            name="num"
+            value={registerForm.num}
+            placeholder={"Nº..."}
+            width="30%"
+            padding={"1rem"}
+          />
         </span>
-        <Input state={registerForm} setState={setRegisterForm} name="registerPass" value={registerForm.pass} placeholder={"senha..."} width="100%" padding={"1rem"} password/>
+        <Input
+          state={registerForm}
+          setState={setRegisterForm}
+          name="registerPass"
+          value={registerForm.pass}
+          placeholder={"senha..."}
+          width="100%"
+          padding={"1rem"}
+          password
+        />
         <span
           style={{
             marginTop: "2rem",
@@ -98,9 +164,20 @@ const Login = () => {
       <>
         <img className="logo" src={Logo} alt="Logo" />
         <div className="input-wrapper">
-          <Input state={loginForm} setState={setLoginForm} name="username" value={loginForm.username} placeholder={"login..."} width="300px" padding={"1rem"} />
-          <Input state={loginForm} setState={setLoginForm}
-            name="pass" value={loginForm.pass}
+          <Input
+            state={loginForm}
+            setState={setLoginForm}
+            name="username"
+            value={loginForm.username}
+            placeholder={"login..."}
+            width="300px"
+            padding={"1rem"}
+          />
+          <Input
+            state={loginForm}
+            setState={setLoginForm}
+            name="pass"
+            value={loginForm.pass}
             placeholder={"senha..."}
             width="300px"
             padding={"1rem"}
@@ -109,7 +186,12 @@ const Login = () => {
         </div>
 
         <span className="login-btns">
-          <Button padding={"0.5rem 2rem"} click={getApi} placeholder={"Login"} width="200px" />
+          <AlternativeButton
+            padding={"0.5rem 2rem"}
+            click={getApi}
+            placeholder={"Login"}
+            width="200px"
+          />
           <Button
             padding={"0.5rem 2rem"}
             width="200px"

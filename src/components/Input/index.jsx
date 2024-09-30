@@ -1,4 +1,4 @@
-import { useState, memo, useId } from "react";
+import { useState, memo } from "react";
 import CookieShow from "../../assets/pass-icon-show.png";
 import CookieOcult from "../../assets/pass-icon-ocult.png";
 
@@ -12,9 +12,8 @@ const Input = memo(({ state, setState, placeholder, password = false, type = "te
   const id = `${name}_id`;
 
   const handleChange = (e) => {
-    const _state = {...state, [e.target.name]: e.target.value};
-    setState(_state);
-  }
+    setState((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
+  };
 
   return (
     <div className="pass-wrapper" style={{ width }}>
