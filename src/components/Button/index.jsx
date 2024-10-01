@@ -10,16 +10,13 @@ const Button = ({
   link = false,
   alternative = false,
 }) => {
-    
   let buttonClass = "custom-btn";
 
-  
-    if (link) {
-      buttonClass = "custom-link";
-    } else if (!link && alternative) {
-      buttonClass = "custom-btn " + alternative;
-    }
-  
+  if (link) {
+    buttonClass = "custom-link";
+  } else if (!link && alternative) {
+    buttonClass = "custom-btn " + alternative;
+  }
 
   return (
     <button

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import api from "../../services/API";
+import { ProductService } from "../../services/Product";
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -34,7 +34,7 @@ const Login = () => {
 
   const getApi = async () => {
     console.log(loginForm);
-    console.log(await api.GET("/character/525"));
+    console.log(await ProductService().GetActiveProducts());
   };
 
   const RegisterForm = () => {
