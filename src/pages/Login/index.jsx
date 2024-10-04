@@ -5,11 +5,12 @@ import { ProductService } from "../../services/Product";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import PageWrapper from "../../components/PageWrapper";
+import AlternativeButton from '../../components/Button/AlternativeButton.jsx'
 import BG from "../../assets/bgcolor.png";
 import Logo from "../../assets/logo.png";
 
 import "./styled.scss";
-import AlternativeButton from "../../components/Button/AlternativeButton";
+
 
 const Login = () => {
   const [isRegister, setIsRegister] = useState(false);
