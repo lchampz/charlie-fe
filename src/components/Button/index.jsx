@@ -15,7 +15,7 @@ const Button = ({
   if (link) {
     buttonClass = "custom-link";
   } else if (!link && alternative) {
-    buttonClass = "custom-btn " + alternative;
+    buttonClass = "custom-btn " + "alternative";
   }
 
   return (

@@ -1,15 +1,16 @@
 import { GenericService } from "./GenericService";
 
 export const ProductService = () => {
-  const genericService = GenericService("produtos");
+  const service = GenericService("produtos");
 
   return {
-    ...genericService,
+    ...service,
     GetActiveProducts: async () => {
-      return await GenericService().Api().GET(`ativo`);
+      return await service.Api().GET(`ativo`);
     },
     GetActiveProductsFromId: async (id) => {
-      return await GenericService().Api().GET(`ativo/${id}`);
+      if(!id) return {status: false, data: "ID não fornecido."};
+      return await service.Api().GET(`ativo/${id}`);
     }
   };
 }

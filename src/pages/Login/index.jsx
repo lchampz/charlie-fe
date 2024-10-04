@@ -28,13 +28,15 @@ const Login = () => {
     registerPass: "",
   });
 
+  const service = ProductService();
+
   const handleToggleRegister = () => {
     setIsRegister((prev) => !prev);
   };
 
   const getApi = async () => {
     console.log(loginForm);
-    console.log(await ProductService().GetActiveProducts());
+    console.log(await service.GetAll());
   };
 
   const RegisterForm = () => {
@@ -143,7 +145,7 @@ const Login = () => {
             gap: "25px",
           }}
         >
-          <Button
+          <AlternativeButton
             padding={"1rem 2rem"}
             width="200px"
             placeholder={"Cadastrar"}
@@ -193,8 +195,9 @@ const Login = () => {
             width="200px"
           />
           <Button
-            padding={"0.5rem 2rem"}
-            width="200px"
+          link
+            
+            
             placeholder={"Criar conta"}
             click={handleToggleRegister}
           />
@@ -219,7 +222,7 @@ const Login = () => {
           <img className="bg-login" src={BG} alt="Background" />
         </div>
 
-        <div className={`column ${isRegister ? "not-show" : ""}`}>
+        <div style={{opacity: isRegister ? 0 : 1}} className={`column ${isRegister ? "not-show" : ""}`}>
           <LoginForm />
         </div>
       </div>

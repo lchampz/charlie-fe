@@ -15,7 +15,8 @@
     align-items: center;
     justify-content: center;
     gap: 65px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    
 
     .bg-login {
         width: 100%;
@@ -34,9 +35,12 @@
     }
 
     .login-btns {
+        
         display: flex;
+        justify-content: center;
+        align-items: center;
         flex-direction: column;
-        gap: 10px;
+        gap: 40px;
     }
 
     @media screen and (max-width: $medium){
@@ -69,6 +73,8 @@
     flex-direction: column;
 }
 
+
+
 @media screen and (max-width: $medium) {
     #bg-slider {
         width: 100%; 
@@ -81,7 +87,7 @@
         opacity: 0; 
     }
 
-    .not-show {
+    .not-show, .not-show-column {
         display: none;
     }
 }
