@@ -5,7 +5,7 @@ import { ProductService } from "../../services/Product";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import PageWrapper from "../../components/PageWrapper";
-import AlternativeButton from '../../components/Button/AlternativeButton.jsx'
+import AlternativeButton from '../../components/AlternativeButton'
 import BG from "../../assets/bgcolor.png";
 import Logo from "../../assets/logo.png";
 

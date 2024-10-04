@@ -50,28 +50,5 @@
     }
 }
 
-.alternative-btn {
-    display: inline-block;
-    position: relative;
-  
-    
-  
-    .bite {
-      position: absolute;
-      right: -10px; // Ajuste para a posição da mordida
-      top: 6%;
-      transform: rotate(60deg);
-     
-      display: flex;
-      z-index: 0;
-  
-      .circle {
-        width: 20px;
-        height: 20px;
-        background-color: $dark-grey; // Cor do fundo do botão
-        border-radius: 50%;
-        margin-left: -2px; // Sobreposição para criar o efeito de mordida
-      }
-    }
-  }
+
   

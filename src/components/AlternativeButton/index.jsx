@@ -1,4 +1,4 @@
-import Button from ".";
+import Button from "../Button";
 
 const AlternativeButton = (props) => {
     return ( <div className="alternative-btn">
