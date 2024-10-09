@@ -4,7 +4,7 @@ import CookieOcult from "../../assets/pass-icon-ocult.png";
 
 import "./styled.scss";
 
-const Input = memo(({ state, setState, placeholder, password = false, type = "text", name, width = "fit-content", padding }) => {
+const Input = memo(({ state, setState, placeholder, password = false, type = "text", name, width = "fit-content", padding, icon = false }) => {
   const [visiblePass, setVisiblePass] = useState(false);
   const handleChangePassVisibility = () => setVisiblePass(prev => !prev);
 
@@ -36,6 +36,14 @@ const Input = memo(({ state, setState, placeholder, password = false, type = "te
           src={visiblePass ? CookieShow : CookieOcult}
           alt="mudar visibilidade da senha"
         />
+      )}
+      {!password && icon && (
+        <img
+        className="icon-input"
+       
+        src={icon}
+        alt="icone personalizado input"
+      />
       )}
     </div>
   );

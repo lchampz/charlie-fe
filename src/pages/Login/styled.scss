@@ -52,8 +52,10 @@
 #bg-slider {
     position: absolute; 
     width: 50%;
+    
     height: 100%; 
     transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 999;
 }
 
 .is-login {
@@ -78,6 +80,7 @@
 @media screen and (max-width: $medium) {
     #bg-slider {
         width: 100%; 
+        
     }
 
     .is-login,
