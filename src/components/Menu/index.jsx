@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../hooks/useCart";
 import Logo from "../../assets/logo-menu.png";
 import Search from "../../assets/search.png";
 import Cart from "../../assets/cart.png";
@@ -8,8 +9,10 @@ import Button from "../Button";
 
 import "./styled.scss";
 
+
 const Menu = () => {
   const [search, setSearch] = useState({ search: "" });
+  const { cart, getCounter } = useCart();
   const navigate = useNavigate();
   const menuOptions = [
     { name: "Home", link: "home" },
@@ -33,9 +36,11 @@ const Menu = () => {
             icon={Search}
           />
           <Button width="120px" placeholder={"entrar"} />
+          
+         
           <div className="cart-counter">
-            <span className="counter"></span>
-            <img className="cart-icon" src={Cart} alt="carrinho" />
+            {getCounter() > 0 ? <div className="counter">{getCounter()}</div> :null}
+            <img onClick={() => console.log(cart)} className="cart-icon" src={Cart} alt="carrinho" />
           </div>
         </div>
       </div>

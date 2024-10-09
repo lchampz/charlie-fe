@@ -24,6 +24,23 @@
         padding: 0rem 0.5rem;
         padding-bottom: 0.3rem;
         align-items: center;
+
+        .counter {
+            font-family: $font-family;
+            margin-left: 30px;
+            position: absolute;
+            background-color: rgb(244, 244, 154);
+            width: 25px;
+            height: 25px;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            
+            border-radius: 60px;
+           
+        }
     }
 
     .wrapper-menu-btns {
