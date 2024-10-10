@@ -1,26 +1,39 @@
+
+import Card from "../../components/Card";
+import { useState } from "react";
 import Menu from "../../components/Menu";
 import { useCart } from "../../hooks/useCart";
 import { useProduct } from "../../hooks/useProduct";
+import PageWrapper from '../../components/PageWrapper'
+
+import "./styled.scss"
 
 
 const Products = () => {
-    const { product } = useProduct();
-    const { cart, addToCart  } = useCart();
-    
-    const sendToCart = (id) => {
-        const findedItem = product.find((item) => id === item.PRODUTO_ID);
+  const [quantity, setQuantity] = useState(0);
+  const { product } = useProduct();
+  const { addToCart } = useCart();
 
-        addToCart(findedItem);
-    }
+  const sendToCart = (id, qtd) => {
+    const findedItem = product.find((item) => id === item.PRODUTO_ID);
 
-    return ( <>
-    <Menu />
-    { <ul>
-          {product.map((product) => (
-            <li onClick={() => sendToCart(product.PRODUTO_ID)} key={product.PRODUTO_ID}>{product.PRODUTO_NOME}</li>
+    addToCart(findedItem, qtd);
+  };
+
+  return (
+    <>
+      <Menu />
+      <PageWrapper  id="wrapper-products">
+        <div className="column"></div>
+        <div className="column">
+          {product.map((item, i) => (
+            <Card key={i} item={item} setState={setQuantity} state={quantity} id={"card-"+item.PRODUTO_ID} click={() => sendToCart(item.PRODUTO_ID, quantity['card-'+item.PRODUTO_ID])}/>
           ))}
-        </ul>}
-    </> );
-}
- 
+         
+        </div>
+      </PageWrapper>
+    </>
+  );
+};
+
 export default Products;
