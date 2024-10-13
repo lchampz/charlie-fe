@@ -22,7 +22,7 @@ const props = {
   ],
 };
 
-const Card = ({ item = props, btnTitle = "comprar", click, setState, state, id }) => {
+const Card = ({ item = props, title = "comprar", click, setState, state, id }) => {
 
   useEffect(() => {
     let isMounted = true;
@@ -72,7 +72,7 @@ const Card = ({ item = props, btnTitle = "comprar", click, setState, state, id }
         </p>
         <div className="card-btns">
           {QuantityComponent()}
-          <Button click={click} placeholder={btnTitle} />
+          <Button click={click} placeholder={title} />
         </div>
       </div>
     </div>
