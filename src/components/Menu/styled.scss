@@ -2,7 +2,8 @@
 
 .menu-wrapper {
     background-color: $dark-gray;
-    display: flex;
+    display: flex; 
+    position: fixed;
     height: 90px;
     width: 100%;
     flex-direction: column;

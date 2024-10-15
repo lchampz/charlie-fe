@@ -1,10 +1,11 @@
-import React, { useState, useContext, createContext, useEffect } from "react";
+import  { useState, useContext, createContext, useEffect } from "react";
 import { ProductService } from "../services/Product";
 
 const ProductContext = createContext({
   product: []
 });
 
+// eslint-disable-next-line react/prop-types
 export const ProductProvider = ({ children }) => {
   const [product, setProduct] = useState([]);
   const service = ProductService();
