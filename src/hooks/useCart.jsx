@@ -40,7 +40,7 @@ export const CartProvider = ({ children }) => {
     } else {
       const updatedCart = cart.map((cartItem) =>
         cartItem.PRODUTO_ID === item.PRODUTO_ID
-          ? { ...cartItem, qtd: cartItem.qtd + qtd }
+          ? { ...cartItem, qtd: parseInt(cartItem.qtd) + parseInt(qtd) }
           : cartItem
       );
       setCart(updatedCart);
