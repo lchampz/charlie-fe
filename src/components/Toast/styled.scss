@@ -1,0 +1,50 @@
+@import "../../scss/variables";
+
+.toast-container {
+    display: flex;
+    flex-direction: row;
+    font-family: $font-family;
+    padding: 0.5em;
+    align-items: center;
+    align-content: center;
+    gap: 5px;
+    justify-content: center;
+    font-size: 17px;
+    border-radius: 10px;
+    color: white;
+    justify-content: space-around;
+    opacity: 0; // Inicialmente oculto
+    transform: translateY(-20px); // Inicia um pouco acima
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; // Animações
+
+    // Animação ao aparecer
+    &.toast--visible {
+        opacity: 1; // Exibe o toast
+        transform: translateY(0); // Move para posição normal
+    }
+
+    .toast-msg {
+        padding: 0.5rem;
+        border-left: 2px solid white;
+    }
+
+    img {
+        width: 40px;
+        height: 40px;
+    }
+
+    &[role="fail"] {
+        background-color: $toast-fail-bg;
+        border: 5px solid $toast-fail-border;
+    }
+
+    &[role="success"] {
+        background-color: $toast-success-bg;
+        border: 5px solid $toast-success-border;
+    }
+
+    &[role="info"] {
+        background-color: $toast-info-bg;
+        border: 5px solid $toast-info-border;
+    }
+}

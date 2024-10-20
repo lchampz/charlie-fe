@@ -1,4 +1,5 @@
 import React, { useState, useContext, createContext } from "react";
+import { useToast } from "./useToast";
 
 const CartContext = createContext({
   cart: [],
@@ -9,12 +10,13 @@ const CartContext = createContext({
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const addToast = useToast();
 
   const removeFromCart = (item, qtd = 1) => {
     const product = cart.find((cartItem) => cartItem.PRODUTO_ID === item.PRODUTO_ID);
 
     if (!product) {
-      console.log("Item não encontrado no carrinho!", item);
+      addToast("Item não encontrado no carrinho!", "fail");
       return;
     }
 
@@ -45,6 +47,7 @@ export const CartProvider = ({ children }) => {
       );
       setCart(updatedCart);
     }
+    addToast("Produto inserido com sucesso!", "success");
   };
 
   const getCounter = () => {
