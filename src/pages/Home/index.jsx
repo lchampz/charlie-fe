@@ -11,6 +11,8 @@ import card3 from "../../assets/03.png";
 import card4 from "../../assets/04.png";
 import delicias from "../../assets/delicias.png";
 import pedaco from "../../assets/pedaco.png";
+import face from "../../assets/face.png";
+import insta from "../../assets/insta.png";
 
 import "./styled.scss";
 
@@ -32,7 +34,7 @@ const Home = () => {
         <section className="banner">
           <div className="titulo">
             <h1>Gostosuras ou travessuras?</h1>
-            <h2>porque não os dois?</h2>
+            <h2>por que não os dois?</h2>
             <a id="button_banner" href="/products">
               Ver Novidades
             </a>
@@ -51,27 +53,27 @@ const Home = () => {
         </section>
 
         <section className="categorias">
-          <h2>Confira Nossos Produtos</h2>
+          <h2>Confira Nossos Diferenciais</h2>
 
         <section className="cards">
         <div className="card">
             <img src={card1} alt="card 1" />
-            <p>Guloseimas</p>
+            <p>Diversão  </p>
           </div>
 
           <div className="card">
             <img src={card2} alt="card 2" />
-            <p>Doces</p>
+            <p>Doçura </p>
           </div>
 
           <div className="card">
             <img src={card3} alt="card 3" />
-            <p>Bolos</p>
+            <p>Celebração  </p>
           </div>
 
           <div className="card">
             <img src={card4} alt="card 4" />
-            <p>Cookies</p>
+            <p>Conforto</p>
           </div>
         </section>
         </section>
@@ -79,7 +81,6 @@ const Home = () => {
         <section className="delicias">
           <img src={delicias} alt="grupo de imagens de bolos" />
         </section>
-
 
         <section className="pedaco">
           <img src={pedaco} alt="foto de uma pedaço de torta" />
@@ -99,6 +100,33 @@ const Home = () => {
           </div>
         </div>
 
+        <footer>
+            <section className="informations">
+              <div className="principal">
+                <h3>Principal</h3>
+                <a href="">Produtos</a>
+                <a href="">Quem Somos</a>
+                <a href="">Carrinho</a>
+                <a href="">Contato</a>
+              </div>
+
+              <div className="contato">
+                <h3>Contato</h3>
+                <p>(11) 95954-0278</p>
+                <p>Contato@charliedoces.com.br</p>
+              </div>
+
+              <div className="redes">
+                <h3>Redes Sociais</h3>
+                <a href=""><img src={face} alt="facebook" /></a>
+                <a href=""><img src={insta} alt="instagram" /></a>
+              </div>
+            </section>
+        </footer>
+
+        {/* <section className="direitos">
+          <p>Direitos reservados a Charlie Doces</p>
+        </section> */}
       </section>
     </>
   );

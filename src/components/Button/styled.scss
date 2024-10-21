@@ -3,11 +3,11 @@
 .custom-btn {
     padding: 0.3rem 1rem;
     cursor: pointer;
-    color: $light-pink;
-    background-color: transparent;
+    color:  $dark-gray;
+    background-color: $light-pink;
     border: 2px solid $light-pink;
-    border-radius: 30px;
-    transition: all 0.4s ease-in-out;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
     font-weight: bold;
     font-size: medium;
     align-items: center;
@@ -16,7 +16,7 @@
     display: flex;
 
     &:hover {
-        color: $dark-gray;
+        color: $dark-pink;
         background-color: $light-pink;
     }
 }

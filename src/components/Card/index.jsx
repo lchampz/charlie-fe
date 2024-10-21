@@ -22,7 +22,7 @@ const props = {
   ],
 };
 
-const Card = ({ item = props, title = "comprar", click, setState, state, id }) => {
+const Card = ({ item = props, title = "Comprar", click, setState, state, id }) => {
 
   useEffect(() => {
     let isMounted = true;

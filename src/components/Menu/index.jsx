@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
-import Logo from "../../assets/logo-menu.png";
+import Logo from "../../assets/logo.png";
 import Search from "../../assets/search.png";
 import Cart from "../../assets/cart.png";
 import Input from "../Input";
 import Button from "../Button";
+// import Menu_back from "../../assets/menu.png";
 
 import "./styled.scss";
 
@@ -30,12 +31,12 @@ const Menu = () => {
             setState={setSearch}
             name="search"
             value={search.search}
-            placeholder={"Procure um produto..."}
+            placeholder={"Procure um Produto..."}
             width="100%"
             padding={"0.5rem"}
             icon={Search}
           />
-          <Button width="120px" placeholder={"entrar"} />
+          <Button width="120px" placeholder={"Entrar"} />
           
          
           <div className="cart-counter">
