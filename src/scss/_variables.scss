@@ -4,16 +4,26 @@
 $black: rgb(21, 21, 21);
 $white: rgb(247, 247, 247);
 $dark-gray: #49445B;
-$green: #BBBF4E;
-$light-green: #C4F2DEA0;
+$light-gray: #4e496196;
+$green: #6EC397;
+$alt-green: #BBBF4E;
+$light-green: #C4E2C6;
 $dark-pink: #E5919C;
 $pink: #F2B4AE;
 $light-pink:#FFE1D7;
 $red: #BF0B0B;
 $yellow: #f2dea0;
 
+$toast-success-border: #7C7E3C;
+$toast-fail-border: #C33939;
+$toast-info-border: #3A4C95;
+
+$toast-success-bg: #BBBF4E;
+$toast-fail-bg: #F15757;
+$toast-info-bg: #4E65BF;
+
 $small: 300px;
 $medium: 900px;
 
 $font-family: "Josefin Sans", sans-serif;
-$font-title: "Leckerli One",sans-serif;
+$cursive-font: "Leckerli One", cursive;
