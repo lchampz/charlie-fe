@@ -150,12 +150,12 @@
 
   .texto_pedaco {
     width: 50%;
-    text-align: justify; /* Centraliza o texto no bloco */
+    text-align: justify; 
 
     h2 {
       font-size: 55px;
       color: $red;
-      font-family: $font-title;
+      font-family: $font-family;
 			margin-bottom: 20px;
     }
 
