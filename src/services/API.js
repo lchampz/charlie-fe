@@ -23,12 +23,17 @@ class API {
 
     try {
       const response = await fetch(url, options);
-      if (!response.ok) throw new Error(`Erro: ${response.status} - ${response.statusText}`);
+      
+      if (!response.ok) {
+        const data = await response.json();
+        
+        throw new Error(`${data.data || "Erro desconhecido."}`);
+      }
       const data = await response.json();
-      return { status: true, data };
+      return data ;
     } catch (error) {
       console.error(`Erro na requisição ${method} para ${url}: ${error.message}`);
-      return { status: false, data: error.message };
+      return { data: error.message };
     }
   }
 

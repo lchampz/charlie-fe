@@ -5,18 +5,21 @@ import { BrowserRouter } from "react-router-dom";
 import { ProductProvider } from "./hooks/useProduct";
 import { CartProvider } from "./hooks/useCart";
 import { ToastProvider } from "./hooks/useToast";
+import { AuthProvider } from "./hooks/useAuth";
 
 const Providers = ({ children }) => {
   return (
     <>
       <BrowserRouter>
-        <ProductProvider>
+        <LoadingProvider>
           <ToastProvider>
-            <CartProvider>
-              <LoadingProvider>{children}</LoadingProvider>
-            </CartProvider>
+            <AuthProvider>
+              <ProductProvider>
+                <CartProvider>{children}</CartProvider>
+              </ProductProvider>
+            </AuthProvider>
           </ToastProvider>
-        </ProductProvider>
+        </LoadingProvider>
       </BrowserRouter>
     </>
   );

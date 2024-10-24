@@ -1,6 +1,7 @@
 import api from "./API";
 import { useLoading } from "../hooks/useLoading";
 
+
 export const GenericService = (route) => {
   const checkId = (id) =>
     !id ? { status: false, data: "ID não fornecido." } : null;
@@ -66,10 +67,10 @@ export const GenericService = (route) => {
     },
 
     Api: () => ({
-      GET: async (url) => {
+      GET: async (url, auth) => {
         try {
           setLoading(true);
-          const response = await api.GET(`/${route}/${url}`);
+          const response = await api.GET(`/${route}/${url}`, {auth: auth});
           return response;
         } finally {
           setLoading(false);
