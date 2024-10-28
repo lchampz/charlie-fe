@@ -10,7 +10,7 @@ export const AuthService = () => {
         const body = { email, pass };
         setLoading(true);
         const response =  await api.POST("/auth/signIn", body);
-        return {response, token: response.token};
+        return response;
       } finally {
         setLoading(false);
       }

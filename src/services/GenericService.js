@@ -1,8 +1,10 @@
 import api from "./API";
+import { useAuth } from "../hooks/useAuth";
 import { useLoading } from "../hooks/useLoading";
 
 
 export const GenericService = (route) => {
+  const { token } = useAuth();
   const checkId = (id) =>
     !id ? { status: false, data: "ID não fornecido." } : null;
   const { setLoading } = useLoading();
@@ -10,7 +12,7 @@ export const GenericService = (route) => {
   return {
     route: route,
 
-    GetAll: async (headers = {}, auth = "") => {
+    GetAll: async (headers = {}, auth = token) => {
       try {
         setLoading(true);
         const response = await api.GET(`/${route}`, headers, auth);
@@ -20,7 +22,7 @@ export const GenericService = (route) => {
       }
     },
 
-    GetFromId: async (id, headers = {}, auth = "") => {
+    GetFromId: async (id, headers = {}, auth = token) => {
       const error = checkId(id);
       if (error) return error;
       try {
@@ -32,7 +34,7 @@ export const GenericService = (route) => {
       }
     },
 
-    Create: async (body, headers = {}, auth = "") => {
+    Create: async (body, headers = {}, auth = token) => {
       try {
         setLoading(true);
         const response = await api.POST(`/${route}`, body, headers, auth);
@@ -42,7 +44,7 @@ export const GenericService = (route) => {
       }
     },
 
-    Update: async (id, body, headers = {}, auth = "") => {
+    Update: async (id, body, headers = {}, auth = token) => {
       const error = checkId(id);
       if (error) return error;
       try {
@@ -54,7 +56,7 @@ export const GenericService = (route) => {
       }
     },
 
-    Delete: async (id, headers = {}, auth = "") => {
+    Delete: async (id, headers = {}, auth = token) => {
       const error = checkId(id);
       if (error) return error;
       try {
@@ -67,7 +69,7 @@ export const GenericService = (route) => {
     },
 
     Api: () => ({
-      GET: async (url, auth) => {
+      GET: async (url, auth = token) => {
         try {
           setLoading(true);
           const response = await api.GET(`/${route}/${url}`, {auth: auth});
@@ -76,7 +78,7 @@ export const GenericService = (route) => {
           setLoading(false);
         }
       },
-      POST: async (url, body, headers = {}, auth = "") => {
+      POST: async (url, body, headers = {}, auth = token) => {
         try {
           setLoading(true);
           const response = await api.POST(
@@ -90,7 +92,7 @@ export const GenericService = (route) => {
           setLoading(false);
         }
       },
-      PUT: async (url, body, headers = {}, auth = "") => {
+      PUT: async (url, body, headers = {}, auth = token) => {
         try {
           setLoading(true);
           const response = await api.PUT(
@@ -104,7 +106,7 @@ export const GenericService = (route) => {
           setLoading(false);
         }
       },
-      DELETE: async (url, headers = {}, auth = "") => {
+      DELETE: async (url, headers = {}, auth = token) => {
         try {
           setLoading(true);
           const response = await api.DELETE(`/${route}/${url}`, headers, auth);
