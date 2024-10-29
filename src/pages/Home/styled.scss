@@ -88,29 +88,32 @@
 }
 
 
-.categorias {
+.categorias_container {
 	width: 100%;
 
 	h2 {
 		font-size: 35px;
-		color: #24212D;
-		font-weight: bold;
-		padding: 2px 7vh ;
+		color: $dark-gray;
+		font-weight: normal;
+		font-family: $cursive-font;
+		text-align: center;
 	}
 
-	.cards {
+	.categorias {
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
 		flex-wrap: wrap;
+		padding: 10vh 0;
 	
-		.card {
+		.categoria {
 			background: transparent;
 	
 			p {
 				color: $dark-gray;
 				padding: 4vh 0;
 				font-size: 25px;
+				text-align: center;
 			}
 		}
 	
@@ -150,12 +153,12 @@
 
   .texto_pedaco {
     width: 50%;
-    text-align: justify; /* Centraliza o texto no bloco */
+    text-align: justify;
 
     h2 {
       font-size: 55px;
       color: $red;
-      font-family: $font-title;
+      font-family: $cursive-font;
 			margin-bottom: 20px;
     }
 
@@ -192,65 +195,3 @@
 	flex-direction: row;
 }
 
-footer {
-	background-color: $dark-gray;
-
-	.informations {
-		display: flex;
-		justify-content: space-around;
-		align-items: start;
-		padding-top: 3.0rem;
-		height: 200px;
-		font-family: $font-family;
-
-
-		h3 {
-			color: #fff;
-			font-size: 25px;
-			border-bottom: 1px solid #fff;
-			margin-bottom: 0.9rem;
-		}
-
-		p {
-			color: $light-pink;
-			font-weight: normal;
-			margin-top: 4px;
-		}
-	}
-}
-
-.principal {
-	display: flex;
-	justify-content: center;
-	align-items: left;
-	flex-direction: column;
-
-	a {
-		color: $light-pink;
-		font-weight: normal;
-		margin-top: 4px;
-		text-decoration: none;
-
-		&:hover {
-			color: $dark-pink;
-			transition: 0.2s;
-		}
-	}
-}
-
-.redes a{
-	padding-right: 10px;
-}
-
-// .direitos {
-// 	background-color: #342d46;
-// 	border-top: 3px solid $light-pink;
-// 	height: 3.0rem;
-// 	display: flex;
-// 	justify-content: center;
-// 	align-items: center;
-
-// 	p{ 
-// 		color: $light-pink;
-// 	}
-// }
