@@ -1,3 +1,5 @@
+import { useAuth } from "../hooks/useAuth";
+
 class API {
   constructor(base_url) {
     this.base_url = base_url;
@@ -18,17 +20,20 @@ class API {
     }
 
     if (auth) {
-      options.headers['Authorization'] = `Bearer ${auth}`;
+      options.headers['Authorization'] = `Bearer Token ${auth}`;
     }
 
     try {
       const response = await fetch(url, options);
-      if (!response.ok) throw new Error(`Erro: ${response.status} - ${response.statusText}`);
       const data = await response.json();
-      return { status: true, data };
+      if (!response.ok) { 
+        throw new Error(`${data.data || "Erro desconhecido."}`);
+      }
+      
+      return data;
     } catch (error) {
       console.error(`Erro na requisição ${method} para ${url}: ${error.message}`);
-      return { status: false, data: error.message };
+      return { data: error.message };
     }
   }
 

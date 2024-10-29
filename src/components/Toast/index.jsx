@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Warning from "../../assets/warning-icon.png";
 import Info from "../../assets/info-icon.png";
 import Success from "../../assets/check-icon.png";
 import "./styled.scss";
 
 const Toast = ({ role = "info", message, isVisible }) => {
-  
-
-  
-  
   const getIcon = () => {
     switch (role) {
       case "info":

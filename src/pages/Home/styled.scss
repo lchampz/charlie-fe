@@ -153,12 +153,12 @@
 
   .texto_pedaco {
     width: 50%;
-    text-align: justify;
+    text-align: justify; 
 
     h2 {
       font-size: 55px;
       color: $red;
-      font-family: $cursive-font;
+      font-family: $font-family;
 			margin-bottom: 20px;
     }
 

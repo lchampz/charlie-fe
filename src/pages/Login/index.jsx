@@ -1,18 +1,21 @@
 import { useState } from "react";
 
+import { useAuth } from "../../hooks/useAuth";
 import { ProductService } from "../../services/Product";
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import PageWrapper from "../../components/PageWrapper";
-import AlternativeButton from '../../components/AlternativeButton'
+import AlternativeButton from "../../components/AlternativeButton";
 import BG from "../../assets/bgcolor.png";
 import Logo from "../../assets/logo.png";
 
 import "./styled.scss";
-
+import { useLoading } from "../../hooks/useLoading";
 
 const Login = () => {
+  const { handleLogin, handleRegister } = useAuth();
+  const { setLoading } = useLoading();
   const [isRegister, setIsRegister] = useState(false);
   const [loginForm, setLoginForm] = useState({
     username: "",
@@ -35,9 +38,23 @@ const Login = () => {
     setIsRegister((prev) => !prev);
   };
 
-  const getApi = async () => {
-    console.log(loginForm);
-    console.log(await service.GetAll());
+  const login = async () => {
+    try {
+      setLoading(true);
+      await handleLogin(loginForm.username, loginForm.pass);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const register = async () => {
+    try {
+      setLoading(true);
+      
+      await handleRegister(registerForm.name, registerForm.registerPass, registerForm.email, registerForm.cpf);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const RegisterForm = () => {
@@ -150,7 +167,7 @@ const Login = () => {
             padding={"1rem 2rem"}
             width="200px"
             placeholder={"Cadastrar"}
-            click={handleToggleRegister}
+            click={register}
           />
           <Button
             placeholder={"Voltar para login"}
@@ -191,14 +208,12 @@ const Login = () => {
         <span className="login-btns">
           <AlternativeButton
             padding={"0.5rem 2rem"}
-            click={getApi}
+            click={login}
             placeholder={"Login"}
             width="200px"
           />
           <Button
-          link
-            
-            
+            link
             placeholder={"Criar conta"}
             click={handleToggleRegister}
           />
@@ -223,7 +238,10 @@ const Login = () => {
           <img className="bg-login" src={BG} alt="Background" />
         </div>
 
-        <div style={{opacity: isRegister ? 0 : 1}} className={`column ${isRegister ? "not-show" : ""}`}>
+        <div
+          style={{ opacity: isRegister ? 0 : 1 }}
+          className={`column ${isRegister ? "not-show" : ""}`}
+        >
           <LoginForm />
         </div>
       </div>
