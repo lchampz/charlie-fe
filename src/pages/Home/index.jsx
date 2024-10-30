@@ -5,11 +5,10 @@ import Menu from "../../components/Menu";
 import Card from "../../components/Card";
 import Footer from "../../components/Footer";
 import banner from "../../assets/home.png";
-import logo_moments from "../../assets/logo1.png";
-import card1 from "../../assets/01.png";
-import card2 from "../../assets/02.png";
-import card3 from "../../assets/03.png";
-import card4 from "../../assets/04.png";
+// import card1 from "../../assets/01.png";
+// import card2 from "../../assets/02.png";
+// import card3 from "../../assets/03.png";
+// import card4 from "../../assets/04.png";
 import delicias from "../../assets/delicias.png";
 import pedaco from "../../assets/pedaco.png";
 
@@ -45,16 +44,41 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="moments">
-          <img src={logo_moments} alt="logo da imagem do momento" />
-          <p>
-            Os melhores momentos da vida são aqueles que compartilhamos com as
-            pessoas que amamos. E nada traz mais alegria do que um doce feito
-            com carinho.
-          </p>
+        <div className="products-column">
+          <span>Conheça nossos produtos</span>
+          <div className="card-wrapper">
+            {product.map((item, i) => (
+              <Card
+                key={i}
+                item={item}
+                setState={setQuantity}
+                state={quantity}
+                id={"card-" + item.PRODUTO_ID}
+                click={() =>
+                  sendToCart(
+                    item.PRODUTO_ID,
+                    quantity["card-" + item.PRODUTO_ID]
+                  )
+                }
+              />
+            ))}
+          </div>
+        </div>
+
+        <section className="pedaco">
+          <img src={pedaco} alt="foto de uma pedaço de torta" />
+          <div className="texto_pedaco">
+            <h2>Vai um pouquinho aí?</h2>
+            <p>
+              Delicie-se com as criações mais irresistíveis! Nossos doces são
+              feitos com ingredientes selecionados e carinho em cada detalhe.
+              Seja para adoçar seu dia ou transformar momentos especiais, cada
+              mordida é uma explosão de sabor!
+            </p>
+          </div>
         </section>
 
-        <section className="categorias_container">
+        {/* <section className="categorias_container">
           <h2> Nossos Diferenciais</h2>
 
           <section className="categorias">
@@ -78,46 +102,11 @@ const Home = () => {
               <p>Conforto</p>
             </div>
           </section>
-        </section>
+        </section> */}
 
         <section className="delicias">
           <img src={delicias} alt="grupo de imagens de bolos" />
         </section>
-
-        <section className="pedaco">
-          <img src={pedaco} alt="foto de uma pedaço de torta" />
-          <div className="texto_pedaco">
-            <h2>Vai um pouquinho aí?</h2>
-            <p>
-              Delicie-se com as criações mais irresistíveis! Nossos doces são
-              feitos com ingredientes selecionados e carinho em cada detalhe.
-              Seja para adoçar seu dia ou transformar momentos especiais, cada
-              mordida é uma explosão de sabor!
-            </p>
-          </div>
-        </section>
-
-        <div className="products-column">
-          <span>Conheça nossos produtos</span>
-          <div className="card-wrapper">
-            {product.map((item, i) => (
-              <Card
-                key={i}
-                item={item}
-                setState={setQuantity}
-                state={quantity}
-                id={"card-" + item.PRODUTO_ID}
-                click={() =>
-                  sendToCart(
-                    item.PRODUTO_ID,
-                    quantity["card-" + item.PRODUTO_ID]
-                  )
-                }
-              />
-            ))}
-          </div>
-        </div>
-
         <Footer />
       </section>
     </>

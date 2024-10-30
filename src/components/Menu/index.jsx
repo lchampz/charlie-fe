@@ -6,7 +6,7 @@ import Search from "../../assets/search.png";
 import Cart from "../../assets/cart.png";
 import Input from "../Input";
 import Button from "../Button";
-import menu_ondinha from "../../assets/menu.png";
+// import menu_ondinha from "../../assets/menu.png";
 // import Menu_back from "../../assets/menu.png";
 
 import "./styled.scss";
@@ -49,9 +49,6 @@ const Menu = () => {
         {menuOptions.map((item, i) => (
             <a key={i} onClick={() => navigate("/" + item.link)} className="menu-item">{item.name}</a>
         ))}
-      </div>
-      <div className="ondinha">
-      <img src={menu_ondinha} alt="menu" />
       </div>
     </div>
   );

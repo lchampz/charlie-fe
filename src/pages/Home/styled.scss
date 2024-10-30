@@ -1,5 +1,26 @@
 @import "../../scss/variables";
 
+* {
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+
+::-webkit-scrollbar-track {
+  background: #ffeded;
+  border-radius: 10px;
+}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: $dark-gray;
+		width: 10px;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: $dark-pink;
+		border-radius: 10px;
+	}
+}
+
 .backgroud {
 	background-image: url(../../assets/backgroud.png);
 	background-size: 70%;
@@ -19,6 +40,7 @@
 		justify-content: center;
 		align-items: left;
 		flex-direction: column;
+		padding-left: 5%;
 	}
 
 	h1{
@@ -43,11 +65,11 @@
 		font-size: 20px;
 		width: 40vh;
 		text-align: center;
+		transition: all 0.3s ease-in-out;
 
 		&:hover {
 			background-color: $yellow;
 			color: #24212D;
-			transition: all 0.3s ease-in-out;
 		}
 	}
 
@@ -58,70 +80,67 @@
 }
 
 
-.moments {
-	background-image: url(../../assets/moments.png);
-	background-size: 100%;
-	background-position: center;
-	background-repeat: no-repeat;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	min-height: 100vh;
-	margin: -20vh 0;
+// .moments {
+// 	background-color: $yellow;
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// 	flex-direction: column;
+// 	padding: 10vh;
+// 	margin: 10vh 0;
 
 
-	p {
-			width: 80%; 
-			max-width: 600px;
-			text-align: center;
-			padding-top: 20px;
-			color: $red;
-			line-height: 1.6;
-			font-size: 1.2rem;
-	}
+// 	p {
+// 			width: 80%; 
+// 			max-width: 600px;
+// 			text-align: center;
+// 			padding-top: 20px;
+// 			color: $red;
+// 			line-height: 1.6;
+// 			font-size: 1.2rem;
+// 	}
 
-	img {
-			width: 20vh;
-			max-width: 150px;
-	}
-}
+// 	img {
+// 			width: 20vh;
+// 			max-width: 150px;
+// 	}
+// }
 
 
-.categorias_container {
-	width: 100%;
+// .categorias_container {
+// 	width: 100%;
 
-	h2 {
-		font-size: 35px;
-		color: $dark-gray;
-		font-weight: normal;
-		font-family: $cursive-font;
-		text-align: center;
-	}
+// 	h2 {
+// 		font-size: 35px;
+// 		color: $dark-gray;
+// 		font-weight: normal;
+// 		font-family: $cursive-font;
+// 		text-align: center;
+// 	}
 
-	.categorias {
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
-		flex-wrap: wrap;
-		padding: 10vh 0;
+// 	.categorias {
+// 		display: flex;
+// 		justify-content: space-around;
+// 		align-items: center;
+// 		flex-wrap: wrap;
+// 		padding: 10vh 0;
 	
-		.categoria {
-			background: transparent;
+// 		.categoria {
+// 			background: transparent;
 	
-			p {
-				color: $dark-gray;
-				padding: 4vh 0;
-				font-size: 25px;
-				text-align: center;
-			}
-		}
+// 			p {
+// 				color: $dark-gray;
+// 				padding: 4vh 0;
+// 				font-size: 25px;
+// 				text-align: center;
+// 			}
+// 		}
 	
-		img {
-			width: 25vh;
-		}
-	}
-}
+// 		img {
+// 			width: 25vh;
+// 		}
+// 	}
+// }
 
 
 .delicias {
@@ -131,6 +150,7 @@
 
 	img{
 		width: 70%;
+		margin-bottom: 2.0rem;
 	}
 }
 
@@ -140,12 +160,9 @@
   display: flex;
   justify-content: space-evenly; 
   align-items: center; 
-  background-image: url("../../assets/card2.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+	background-color: $yellow;
   margin: 50px 0;
-  min-height: 70vh;
+  min-height: 60vh;
 
   img {
     width: 20%;
@@ -153,12 +170,12 @@
 
   .texto_pedaco {
     width: 50%;
-    text-align: justify; 
+    text-align: left; 
 
     h2 {
       font-size: 55px;
       color: $red;
-      font-family: $font-family;
+      font-family: $cursive-font;
 			margin-bottom: 20px;
     }
 
