@@ -16,10 +16,14 @@ export class Cookie {
       const cookiesArray = document.cookie.split(';'); 
 
       const findedCookie = cookiesArray.find((cookie) => {
-        if(cookie.trim().indexOf(parsedName + "=") === 0) return cookie.substring(parsedName.length, cookie.length);
+        if(cookie.trim().indexOf(parsedName) === 0) return cookie.substring(parsedName.length, cookie.length);
       })
+      
+      if (!findedCookie) return null; 
 
-      return findedCookie ?? null;
+      const cookieValue = findedCookie.split("=")[1];
+
+      return cookieValue ?? null;
      
     }
   

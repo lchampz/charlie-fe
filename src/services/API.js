@@ -1,4 +1,4 @@
-import { useAuth } from "../hooks/useAuth";
+
 
 class API {
   constructor(base_url) {
@@ -20,11 +20,13 @@ class API {
     }
 
     if (auth) {
-      options.headers['Authorization'] = `Bearer Token ${auth}`;
+      console.log(auth)
+      options.headers['Authorization'] = `Bearer ${auth}`;
     }
 
     try {
       const response = await fetch(url, options);
+      console.log(options)
       const data = await response.json();
       if (!response.ok) { 
         throw new Error(`${data.data || "Erro desconhecido."}`);
@@ -37,8 +39,9 @@ class API {
     }
   }
 
-  GET(route, headers = {}, auth = "") {
-    return this.request(route, "GET", null, headers, auth);
+  GET(route, body=null, headers = {}, auth = "teste") {
+    console.log(auth)
+    return this.request(route, "GET", body, headers, auth);
   }
 
   POST(route, body, headers = {}, auth = "") {
@@ -49,8 +52,8 @@ class API {
     return this.request(route, "PUT", body, headers, auth);
   }
 
-  DELETE(route, headers = {}, auth = "") {
-    return this.request(route, "DELETE", null, headers, auth);
+  DELETE(route,body= null, headers = {}, auth = "") {
+    return this.request(route, "DELETE", body, headers, auth);
   }
 }
 

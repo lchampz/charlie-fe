@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const addToast = useToast();
   const { login, register } = AuthService();
+  const [tokenLoaded, setTokenLoaded] = useState(false);
 
   const decodeToken = (token) => {
     try {
@@ -28,14 +29,15 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const storageToken =
-      token || Cookie.getCookie("user");
+    const storageToken = Cookie.getCookie("user");
     if (storageToken) {
       const decodedUser = decodeToken(storageToken);
       if (decodedUser) {
         setUser({ name: decodedUser.name, email: decodedUser.email });
+        setToken(storageToken);
       }
     }
+    setTokenLoaded(true); // Defina como verdadeiro após a tentativa de carregar o token
   }, []);
 
   useEffect(() => {
@@ -43,6 +45,7 @@ export const AuthProvider = ({ children }) => {
       token || Cookie.getCookie("user");
     if (storageToken) {
       const decodedUser = decodeToken(storageToken);
+      
       if (decodedUser) {
         setUser({ name: decodedUser.name, email: decodedUser.email });
       }
@@ -87,11 +90,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider
-      value={{ user, token, handleLogin, handleRegister, handleLogout }}
-    >
-      {children}
-    </AuthContext.Provider>
+    tokenLoaded ? (
+      <AuthContext.Provider value={{ user, token, handleLogin, handleRegister, handleLogout }}>
+        {children}
+      </AuthContext.Provider>
+    ) : (
+      <div>Carregando autenticação...</div>
+    )
   );
 };
 
