@@ -1,0 +1,44 @@
+@import "../../scss/variables";
+
+@media (max-width: 800px) {
+  footer {
+    background-color: $dark-gray;
+    width: 100%;
+    min-height: 50vh;
+
+    .informations {
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 2rem;
+      font-family: $font-family;
+    }
+  }
+
+  .principal {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    padding-left: 2vh;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .contato {
+    margin-bottom: 1.9rem;
+    line-height: 1.4;
+    padding-left: 2vh;
+  }
+
+  .redes {
+    padding-left: 2vh;
+
+    a {
+      padding-right: 10px;
+
+      img {
+        width: 7vh;
+      }
+    }
+  }
+}

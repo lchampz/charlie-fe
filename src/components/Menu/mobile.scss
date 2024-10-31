@@ -1,0 +1,40 @@
+@import "../../scss/variables";
+
+@media (max-width: 800px) {
+
+	.menu-wrapper {
+			position: sticky;
+			height: 200px;
+			width: 100%;
+
+			.logo-menu {
+					width: 130px;
+					padding-top: 1vh;
+			}
+	
+			.top-side {
+					padding: 0rem 0.5rem;
+					padding-bottom: 1.5rem;
+					align-items: center;
+					z-index: 1;
+					flex-direction: column;
+			}
+	
+			.wrapper-menu-btns {
+        display: flex;
+        width: 80%;
+        align-items: center;
+        justify-content: space-around;
+				padding-top: 20px;
+			}
+	
+			.bot-side {
+					padding-bottom: 0.7rem;
+					text-align: center;
+			}
+	
+			.ondinha {
+					bottom: -20px;
+			}
+	}
+}

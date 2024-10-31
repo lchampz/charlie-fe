@@ -6,9 +6,11 @@ import Search from "../../assets/search.png";
 import Cart from "../../assets/cart.png";
 import Input from "../Input";
 import Button from "../Button";
+// import menu_ondinha from "../../assets/menu.png";
 // import Menu_back from "../../assets/menu.png";
 
 import "./styled.scss";
+import "./mobile.scss";
 
 
 const Menu = () => {
@@ -37,8 +39,6 @@ const Menu = () => {
             icon={Search}
           />
           <Button width="120px" placeholder={"Entrar"} />
-          
-         
           <div className="cart-counter">
             {getCounter() > 0 ? <div className="counter">{getCounter()}</div> :null}
             <img onClick={() => console.log(cart)} className="cart-icon" src={Cart} alt="carrinho" />

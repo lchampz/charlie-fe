@@ -4,20 +4,21 @@
     padding: 0.3rem 1rem;
     cursor: pointer;
     color:  $white;
-    background-color: $light-pink;
-    border: 2px solid $light-pink;
-    border-radius: 30px;
+    background-color: $dark-pink;
+    border: 2px solid $dark-pink;
+    border-radius: 10px;
     transition: all 0.2s ease-in-out;
     font-weight: bold;
     font-size: medium;
     align-items: center;
     justify-content: center;
-    
     display: flex;
+    color: $light-pink;
 
     &:hover {
-        color: $dark-pink;
-        background-color: $light-pink;
+        color: $dark-gray;
+        background-color: $yellow;
+        border: 2px solid $yellow;
     }
 }
 
