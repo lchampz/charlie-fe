@@ -164,6 +164,7 @@ const Login = () => {
           }}
         >
           <AlternativeButton
+            borderRadius={"30px"}
             padding={"1rem 2rem"}
             width="200px"
             placeholder={"Cadastrar"}
@@ -207,6 +208,7 @@ const Login = () => {
 
         <span className="login-btns">
           <AlternativeButton
+          borderRadius={"30px"}
             padding={"0.5rem 2rem"}
             click={login}
             placeholder={"Login"}
