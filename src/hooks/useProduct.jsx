@@ -1,43 +1,45 @@
-import  { useState, useContext, createContext, useEffect } from "react";
+import { useState, useContext, createContext, useEffect, useCallback } from "react";
 import { ProductService } from "../services/Product";
+import { useLoading } from "./useLoading";
 
 const ProductContext = createContext({
-  product: []
+  product: [],
+  loading: true,
+  fetchProducts: () => {},
 });
 
-// eslint-disable-next-line react/prop-types
 export const ProductProvider = ({ children }) => {
   const [product, setProduct] = useState([]);
   const service = ProductService();
+  
+  const { loading, setLoading } = useLoading()
+
+  const fetchProducts = useCallback(async () => {
+    try {
+      setLoading(true)
+      
+      const response = await service.GetActiveProducts();
+      
+      if (response) {
+        
+        setProduct(response);
+      } else {
+        console.error("[ERROR] " + response);
+      }
+    } catch (err) {
+      console.error("Erro ao buscar produtos:", err);
+    } finally {
+      setLoading(false);
+      
+    }
+  }, [service]);
 
   useEffect(() => {
-    let isMounted = true;
-
-    const fetchProducts = async () => {
-      try {
-        const response = await service.GetActiveProducts();
-
-        if (isMounted) {
-          if (response.status) {
-            setProduct(response.data);
-          } else {
-            console.log("[ERROR] " + response.data);
-          }
-        }
-      } catch (error) {
-        console.error("Erro ao buscar produtos:", error);
-      }
-    };
-
-    fetchProducts();
-
-    return () => {
-      isMounted = false;
-    };
+     fetchProducts();
   }, []);
 
   return (
-    <ProductContext.Provider value={{ product }}>
+    <ProductContext.Provider value={{ product, fetchProducts, loading }}>
       {children}
     </ProductContext.Provider>
   );
@@ -45,10 +47,8 @@ export const ProductProvider = ({ children }) => {
 
 export const useProduct = () => {
   const context = useContext(ProductContext);
-
   if (!context) {
-    throw new Error("useProduct must be used within a productProvider");
+    throw new Error("useProduct must be used within a ProductProvider");
   }
-
   return context;
 };

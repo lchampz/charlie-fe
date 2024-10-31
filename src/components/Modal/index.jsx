@@ -34,7 +34,7 @@ const Modal = ({ item = props, open, close }) => {
 
   const handleChangeQuantity = (e) => {
     const value = Number(e.target.value);
-    if (isNaN(value) || value < 1 || value > item.estoque.PRODUTO_QTD) return;
+    if (isNaN(value) || value < 1 || value > (item.estoque.PRODUTO_QTD ?? 0)) return;
     setQuantity(value);
   };
 
@@ -78,7 +78,7 @@ const Modal = ({ item = props, open, close }) => {
                   <div className="modal-btn-wrapper">
                     <div className="storage">
                       <p>SELECIONA A QUANTIDADE</p>
-                      <p>Estoque: {item.estoque.PRODUTO_QTD}</p>
+                      <p>Estoque: {item?.estoque?.PRODUTO_QTD  ? item?.estoque?.PRODUTO_QTD : 0}</p>
                     </div>
                     <div className="btn-add">
                       <input
@@ -86,7 +86,7 @@ const Modal = ({ item = props, open, close }) => {
                         value={quantity}
                         onChange={handleChangeQuantity}
                         min={1}
-                        max={item.estoque.PRODUTO_QTD}
+                        max={item.estoque.PRODUTO_QTD ?? 0}
                         className="product-quantity"
                       />
                       <button className="cart-btn" onClick={sendToCart}>

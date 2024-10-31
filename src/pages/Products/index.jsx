@@ -1,6 +1,6 @@
 
 import Card from "../../components/Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Menu from "../../components/Menu";
 import { useCart } from "../../hooks/useCart";
 import { useProduct } from "../../hooks/useProduct";
@@ -26,7 +26,7 @@ const Products = () => {
       <PageWrapper  id="wrapper-products">
         <div className="column"></div>
         <div className="column">
-          {product.map((item, i) => (
+          {product?.map((item, i) => (
             <Card key={i} item={item} setState={setQuantity} state={quantity} id={"card-"+item.PRODUTO_ID} click={() => sendToCart(item.PRODUTO_ID, quantity['card-'+item.PRODUTO_ID])}/>
           ))}
          
