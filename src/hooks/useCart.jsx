@@ -34,6 +34,11 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = (item, qtd = 1) => {
+
+    if(!item.estoque || item.estoque.PRODUTO_QTD <= 0) {
+      addToast("Produto sem estoque!", "fail");
+      return;
+    }
     const product = cart.find((cartItem) => cartItem.PRODUTO_ID === item.PRODUTO_ID);
 
     if (!product) {
