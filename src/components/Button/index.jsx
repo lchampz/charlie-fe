@@ -9,7 +9,8 @@ const Button = ({
   padding,
   link = false,
   alternative = false,
-  borderRadius
+  borderRadius,
+  margin
 }) => {
   let buttonClass = "custom-btn";
 
@@ -21,7 +22,7 @@ const Button = ({
 
   return (
     <button
-      style={{ width, padding, borderRadius }}
+      style={{ width, padding, borderRadius, margin}}
       className={buttonClass}
       type={submit ? "submit" : "button"}
       onClick={click}

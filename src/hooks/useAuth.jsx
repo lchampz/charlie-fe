@@ -10,13 +10,14 @@ const AuthContext = createContext({
   handleLogin: async (username, pass) => {},
   handleRegister: async (name, pass, email, cpf) => {},
   handleLogout: () => {},
+  getUserInfo: async () => {},
 });
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
   const addToast = useToast();
-  const { login, register } = AuthService();
+  const { login, register, getInfoByToken } = AuthService();
   const [tokenLoaded, setTokenLoaded] = useState(false);
 
   const decodeToken = (token) => {
@@ -74,13 +75,24 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await register(name, email, pass, cpf);
       if (response) {
-        console.log(response);
+        
         addToast(response.data, !response.error ? "fail" : "success");
       }
     } catch (error) {
       addToast("Erro ao fazer registro!", "fail");
     }
   };
+
+  const getUserInfo = async () => {
+    
+    try {
+      const response = await getInfoByToken(token);
+      if (response) return response;
+    } catch (error) {
+      addToast("Erro ao recuperar informações do usuário!", "fail");
+    }
+
+  }
 
   const handleLogout = () => {
     Cookie.eraseCookie("user");
@@ -91,7 +103,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     tokenLoaded ? (
-      <AuthContext.Provider value={{ user, token, handleLogin, handleRegister, handleLogout }}>
+      <AuthContext.Provider value={{ user, token, handleLogin, handleRegister, handleLogout, getUserInfo }}>
         {children}
       </AuthContext.Provider>
     ) : (

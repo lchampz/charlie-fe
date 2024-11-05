@@ -35,7 +35,7 @@
 
         img {
             &:last-child {
-                width: 150px;
+                width: 130px;
                 
             }
         }
@@ -59,11 +59,11 @@
             gap: 8px;
             align-items: center;
             justify-content: center;
-          border-left: 1px solid $white;
-          padding: 0.5rem;
-          font-size: 15px;
-          text-decoration: underline;
-          cursor: pointer;
+            border-left: 1px solid $white;
+            padding: 0.5rem;
+            font-size: 15px;
+            text-decoration: underline;
+            cursor: pointer;
         }
       }
     }
@@ -71,14 +71,32 @@
     .content-user-page {
       display: flex;
       width: 100%;
+      flex-direction: column;
       color: $black;
       border-radius: 10px;
+      gap: 30px;
       background-color: $white;
       padding: 1rem;
 
       .return {
-        cursor: pointer;
-        text-decoration: underline;
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       
+        width: fit-content;
+        
+        p {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+
+        .title {
+          border-left: 2px solid $light-gray;
+          padding: 0 1rem;
+          color: rgb(175, 175, 175);
+          
+        }
       }
 
       .wrapper-page {
@@ -118,6 +136,7 @@
             width: 40%;
 
             background-color: $dark-pink;
+            transition: all 0.5s ease-in-out;
 
             .card-content {
               display: flex;
@@ -146,9 +165,47 @@
 
                 &:last-child {
                     width: 25px;
+                    bottom: 0;
                 }
                }
             }
+
+            &:hover {
+              background-color: $light-pink;
+              
+              
+            }
+          }
+        }
+      }
+
+      .page-user-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        
+       
+        flex-wrap: wrap;
+        flex: 1;
+        gap: 20px;
+
+        span {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          gap: 5px;
+        }
+
+        label {
+         margin-left: 5px;
+        }
+
+        input {
+          color: $dark-pink !important; 
+          border: 2px solid $dark-pink;
+
+          &:focus {
+            border: 2px solid $red;
           }
         }
       }

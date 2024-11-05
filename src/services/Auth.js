@@ -26,5 +26,14 @@ export const AuthService = () => {
             setLoading(false);
           }
     },
+    getInfoByToken: async (token) => {
+      try {
+        setLoading(true);
+        const response =  await api.GET("/usuario", null, {}, token);
+        return response;
+      } finally {
+        setLoading(false);
+      }
+    }
   };
 };
