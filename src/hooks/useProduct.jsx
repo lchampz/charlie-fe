@@ -1,31 +1,52 @@
-import { useState, useContext, createContext, useEffect } from "react";
+import {
+  useState,
+  useContext,
+  createContext,
+  useEffect,
+  useCallback,
+} from "react";
 import { ProductService } from "../services/Product";
+import { useAuth } from "./useAuth";
 
 const ProductContext = createContext({
   product: [],
+  
+  fetchProducts: () => {},
 });
 
 // eslint-disable-next-line react/prop-types
 export const ProductProvider = ({ children }) => {
   const [product, setProduct] = useState([]);
-  const service = ProductService();
+  const { token } = useAuth();
+
+  const fetchProducts = useCallback(async () => {
+    const service = ProductService(token);
+
+    try {
+      
+
+      const response = await service.GetActiveProducts();
+
+      if (response) {
+        setProduct(response);
+      } else {
+        console.error("[ERROR] " + response);
+      }
+    } catch (err) {
+      console.error("Erro ao buscar produtos:", err);
+    }
+  }, [token]);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await service.GetActiveProducts();
-
-        setProduct(response);
-      } catch (error) {
-        console.error("Erro ao buscar produtos:", error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+    
+    
+    if (token) {
+      fetchProducts();
+    }
+  }, [token]);
 
   return (
-    <ProductContext.Provider value={{ product }}>
+    <ProductContext.Provider value={{ product, fetchProducts }}>
       {children}
     </ProductContext.Provider>
   );
@@ -34,10 +55,8 @@ export const ProductProvider = ({ children }) => {
 // eslint-disable-next-line react-refresh/only-export-components
 export const useProduct = () => {
   const context = useContext(ProductContext);
-
   if (!context) {
-    throw new Error("useProduct must be used within a productProvider");
+    throw new Error("useProduct não pode ser usado sem ProductProvider");
   }
-
   return context;
 };

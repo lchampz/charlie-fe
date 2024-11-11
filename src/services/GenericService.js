@@ -1,119 +1,93 @@
 import api from "./API";
-import { useAuth } from "../hooks/useAuth";
-import { useLoading } from "../hooks/useLoading";
 
+export const GenericService = (route, token = "") => {
+  const validateId = (id) => {
+    return id ? null : { status: false, data: "ID não fornecido." };
+  };
 
-export const GenericService = (route) => {
-  const { token } = useAuth();
-  const checkId = (id) =>
-    !id ? { status: false, data: "ID não fornecido." } : null;
-  const { setLoading } = useLoading();
+  const makeRequest = async (
+    method,
+    endpoint,
+    body = null,
+    headers = {},
+    auth = token
+  ) => {
+    console.log(token)
+    return await api[method](endpoint, body, headers, auth);
+  };
 
   return {
-    route: route,
+    route,
 
     GetAll: async (headers = {}, auth = token) => {
-      try {
-        setLoading(true);
-        const response = await api.GET(`/${route}`, headers, auth);
-        return response;
-      } finally {
-        setLoading(false);
-      }
+      return await makeRequest("GET", `/${route}`, null, headers, auth);
     },
 
     GetFromId: async (id, headers = {}, auth = token) => {
-      const error = checkId(id);
-      if (error) return error;
-      try {
-        setLoading(true);
-        const response = await api.GET(`/${route}/${id}`, headers, auth);
-        return response;
-      } finally {
-        setLoading(false);
-      }
+      const idValidation = validateId(id);
+      if (idValidation) return idValidation;
+      return await makeRequest("GET", `/${route}/${id}`, null, headers, auth);
     },
 
     Create: async (body, headers = {}, auth = token) => {
-      try {
-        setLoading(true);
-        const response = await api.POST(`/${route}`, body, headers, auth);
-        return response;
-      } finally {
-        setLoading(false);
-      }
+      return await makeRequest("POST", `/${route}`, body, headers, auth);
     },
 
     Update: async (id, body, headers = {}, auth = token) => {
-      const error = checkId(id);
-      if (error) return error;
-      try {
-        setLoading(true);
-        const response = await api.PUT(`/${route}/${id}`, body, headers, auth);
-        return response;
-      } finally {
-        setLoading(false);
-      }
+      const idValidation = validateId(id);
+      if (idValidation) return idValidation;
+      return await makeRequest("PUT", `/${route}/${id}`, body, headers, auth);
     },
 
     Delete: async (id, headers = {}, auth = token) => {
-      const error = checkId(id);
-      if (error) return error;
-      try {
-        setLoading(true);
-        const response = await api.DELETE(`/${route}/${id}`, headers, auth);
-        return response;
-      } finally {
-        setLoading(false);
-      }
+      const idValidation = validateId(id);
+      if (idValidation) return idValidation;
+      return await makeRequest(
+        "DELETE",
+        `/${route}/${id}`,
+        null,
+        headers,
+        auth
+      );
     },
 
     Api: () => ({
-      GET: async (url, auth = token) => {
-        try {
-          setLoading(true);
-          const response = await api.GET(`/${route}/${url}`, {auth: auth});
-          return response;
-        } finally {
-          setLoading(false);
-        }
+      GET: async (url, headers = {}, auth = token) => {
+        
+        return await makeRequest(
+          "GET",
+          `/${route}/${url}`,
+          null,
+          headers,
+          auth
+        );
       },
       POST: async (url, body, headers = {}, auth = token) => {
-        try {
-          setLoading(true);
-          const response = await api.POST(
-            `/${route}/${url}`,
-            body,
-            headers,
-            auth
-          );
-          return response;
-        } finally {
-          setLoading(false);
-        }
+        return await makeRequest(
+          "POST",
+          `/${route}/${url}`,
+          body,
+          headers,
+          auth
+        );
       },
       PUT: async (url, body, headers = {}, auth = token) => {
-        try {
-          setLoading(true);
-          const response = await api.PUT(
-            `/${route}/${url}`,
-            body,
-            headers,
-            auth
-          );
-          return response;
-        } finally {
-          setLoading(false);
-        }
+        return await makeRequest(
+          "PUT",
+          `/${route}/${url}`,
+          body,
+          headers,
+          auth
+        );
       },
       DELETE: async (url, headers = {}, auth = token) => {
-        try {
-          setLoading(true);
-          const response = await api.DELETE(`/${route}/${url}`, headers, auth);
-          return response;
-        } finally {
-          setLoading(false);
-        }
+        return await makeRequest(
+          "DELETE",
+          `/${route}/${url}`,
+          null,
+          headers,
+          auth
+        );
       },
     }),
   };

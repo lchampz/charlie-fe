@@ -10,13 +10,15 @@ const AuthContext = createContext({
   handleLogin: async (username, pass) => {},
   handleRegister: async (name, pass, email, cpf) => {},
   handleLogout: () => {},
+  getUserInfo: async () => {},
 });
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
   const addToast = useToast();
-  const { login, register } = AuthService();
+  const { login, register, getInfoByToken } = AuthService();
+  const [tokenLoaded, setTokenLoaded] = useState(false);
 
   const decodeToken = (token) => {
     try {
@@ -28,14 +30,15 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const storageToken =
-      token || Cookie.getCookie("user");
+    const storageToken = Cookie.getCookie("user");
     if (storageToken) {
       const decodedUser = decodeToken(storageToken);
       if (decodedUser) {
         setUser({ name: decodedUser.name, email: decodedUser.email });
+        setToken(storageToken);
       }
     }
+    setTokenLoaded(true); // Defina como verdadeiro após a tentativa de carregar o token
   }, []);
 
   useEffect(() => {
@@ -43,6 +46,7 @@ export const AuthProvider = ({ children }) => {
       token || Cookie.getCookie("user");
     if (storageToken) {
       const decodedUser = decodeToken(storageToken);
+      
       if (decodedUser) {
         setUser({ name: decodedUser.name, email: decodedUser.email });
       }
@@ -71,13 +75,24 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await register(name, email, pass, cpf);
       if (response) {
-        console.log(response);
+        
         addToast(response.data, !response.error ? "fail" : "success");
       }
     } catch (error) {
       addToast("Erro ao fazer registro!", "fail");
     }
   };
+
+  const getUserInfo = async () => {
+    
+    try {
+      const response = await getInfoByToken(token);
+      if (response) return response;
+    } catch (error) {
+      addToast("Erro ao recuperar informações do usuário!", "fail");
+    }
+
+  }
 
   const handleLogout = () => {
     Cookie.eraseCookie("user");
@@ -87,11 +102,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider
-      value={{ user, token, handleLogin, handleRegister, handleLogout }}
-    >
-      {children}
-    </AuthContext.Provider>
+    tokenLoaded ? (
+      <AuthContext.Provider value={{ user, token, handleLogin, handleRegister, handleLogout, getUserInfo }}>
+        {children}
+      </AuthContext.Provider>
+    ) : (
+      <div>Carregando autenticação...</div>
+    )
   );
 };
 

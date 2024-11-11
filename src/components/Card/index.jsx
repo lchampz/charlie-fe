@@ -5,6 +5,7 @@ import Modal from "../Modal";
 import no_sweet from "../../assets/no-sweet.png"
 
 import "./styled.scss";
+import { useToast } from "../../hooks/useToast";
 
 const props = {
   PRODUTO_ID: 0,
@@ -34,7 +35,8 @@ const Card = ({
   state,
   id,
 }) => {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(false)
+  const addToast = useToast();
 
   useEffect(() => {
     let isMounted = true;
@@ -49,12 +51,16 @@ const Card = ({
   }, []);
 
   const handleOpenCloseModal = () => {
-    setModal((prevState) => !prevState);
+    if(!item.estoque) {
+      addToast("Produto sem estoque!", "fail")
+      return;
+    }
+    setModal((prevState) => (!prevState));
   };
 
   const QuantityComponent = () => {
     const add = () => {
-      if (state[id] >= item.estoque.PRODUTO_QTD) return;
+      if (state[id] >= (item.estoque?.PRODUTO_QTD ?? 0)) return;
       setState((prevState) => ({ ...prevState, [id]: prevState[id] + 1 }));
     };
 

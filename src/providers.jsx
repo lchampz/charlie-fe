@@ -11,15 +11,15 @@ const Providers = ({ children }) => {
   return (
     <>
       <BrowserRouter>
-        <LoadingProvider>
-          <ToastProvider>
-            <AuthProvider>
+        <ToastProvider>
+          <AuthProvider>
+            <LoadingProvider>
               <ProductProvider>
                 <CartProvider>{children}</CartProvider>
               </ProductProvider>
-            </AuthProvider>
-          </ToastProvider>
-        </LoadingProvider>
+            </LoadingProvider>
+          </AuthProvider>
+        </ToastProvider>
       </BrowserRouter>
     </>
   );
