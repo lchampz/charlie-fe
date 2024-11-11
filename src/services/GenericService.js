@@ -12,7 +12,6 @@ export const GenericService = (route, token = "") => {
     headers = {},
     auth = token
   ) => {
-    console.log(token)
     return await api[method](endpoint, body, headers, auth);
   };
 

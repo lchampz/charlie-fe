@@ -20,13 +20,11 @@ class API {
     }
 
     if (auth) {
-      console.log(auth)
       options.headers['Authorization'] = `Bearer ${auth}`;
     }
 
     try {
       const response = await fetch(url, options);
-      console.log(options)
       const data = await response.json();
       if (!response.ok) { 
         throw new Error(`${data.data || "Erro desconhecido."}`);
@@ -40,7 +38,6 @@ class API {
   }
 
   GET(route, body=null, headers = {}, auth = "teste") {
-    console.log(auth)
     return this.request(route, "GET", body, headers, auth);
   }
 

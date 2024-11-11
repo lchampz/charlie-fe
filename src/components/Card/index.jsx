@@ -95,7 +95,7 @@ const Card = ({
         >
           <div className="card-img">
             <div className="discount-percentage">15% off</div>
-            <img src={item.imagens[0]?.IMAGEM_URL} alt="imagem produto" />
+            
           </div>
           <div className="card-info">
             <p className="card-title">{item.PRODUTO_NOME}</p>

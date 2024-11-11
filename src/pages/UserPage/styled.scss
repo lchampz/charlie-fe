@@ -3,15 +3,18 @@
 .wrapper-user-page {
   width: 100%;
   height: 100vh;
+  gap: 10px;
   background-color: $dark-gray;
   font-family: $font-family;
   display: flex;
+  
 
   align-items: center;
   justify-content: center;
   align-content: center;
 
   .container-user-page {
+    margin: 10px;
     display: flex;
     color: white;
     border-radius: 10px;
@@ -34,10 +37,9 @@
         gap: 15px;
 
         img {
-            &:last-child {
-                width: 130px;
-                
-            }
+          &:last-child {
+            width: 130px;
+          }
         }
 
         .greeting {
@@ -55,15 +57,15 @@
         }
 
         .exit {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            justify-content: center;
-            border-left: 1px solid $white;
-            padding: 0.5rem;
-            font-size: 15px;
-            text-decoration: underline;
-            cursor: pointer;
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          justify-content: center;
+          border-left: 1px solid $white;
+          padding: 0.5rem;
+          font-size: 15px;
+          text-decoration: underline;
+          cursor: pointer;
         }
       }
     }
@@ -83,9 +85,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-       
+
         width: fit-content;
-        
+
         p {
           text-decoration: underline;
           cursor: pointer;
@@ -95,7 +97,6 @@
           border-left: 2px solid $light-gray;
           padding: 0 1rem;
           color: rgb(175, 175, 175);
-          
         }
       }
 
@@ -159,21 +160,19 @@
                 font-size: 15px;
               }
 
-               img {
+              img {
                 width: 30px;
                 height: 30px;
 
                 &:last-child {
-                    width: 25px;
-                    bottom: 0;
+                  width: 25px;
+                  bottom: 0;
                 }
-               }
+              }
             }
 
             &:hover {
               background-color: $light-pink;
-              
-              
             }
           }
         }
@@ -183,8 +182,7 @@
         width: 100%;
         height: 100%;
         display: flex;
-        
-       
+
         flex-wrap: wrap;
         flex: 1;
         gap: 20px;
@@ -197,11 +195,11 @@
         }
 
         label {
-         margin-left: 5px;
+          margin-left: 5px;
         }
 
         input {
-          color: $dark-pink !important; 
+          color: $dark-pink !important;
           border: 2px solid $dark-pink;
 
           &:focus {
@@ -210,5 +208,117 @@
         }
       }
     }
+  }
+}
+
+.address-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-end;
+  table {
+    width: 100%;
+    thead {
+      background-color: $dark-pink;
+      padding: 5px;
+      height: 60px;
+    
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      margin: 0 auto;
+      font-size: 13px;
+      font-weight: bold;
+      color: rgb(255, 255, 255);
+    }
+
+    
+    
+    tbody tr:nth-child(even) {
+      background-color: #78b2ca31;
+    }
+    td:last-child {
+      box-shadow: inset -10px 0px 0px -8px $dark-pink;
+    }
+    
+    tbody tr:last-child {
+      border: 0;
+      box-shadow: inset 1px -1px 0px 1px $dark-pink;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    
+    tbody tr:last-child td:last-child {
+      border-bottom-right-radius: 10px;
+      
+    }
+
+    td,
+    th {
+      font-size: 12px;
+      padding: 1rem;
+      text-align: center;
+      justify-content: center;
+      align-content: center;
+      margin: 0 auto;
+      width: 10px;
+    }
+
+    tbody tr {
+      &:hover {
+        background-color: $light-pink;
+        cursor: pointer;
+        border: 0;
+     
+      }
+    }
+
+    th:first-child {
+      border-top-left-radius: 10px;
+    }
+
+    th:last-child {
+      border-top-right-radius: 10px;
+    }
+  }
+}
+
+.page-address-container {
+  margin: 1rem;
+  background-color: $white;
+  padding: 1rem;
+  display: flex;
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+
+  flex-wrap: wrap;
+  flex: 1;
+  gap: 20px;
+
+  span {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+  }
+
+  label {
+    margin-left: 5px;
+  }
+
+  input {
+    color: $dark-pink !important;
+    border: 2px solid $dark-pink;
+
+    &:focus {
+      border: 2px solid $red;
+    }
+  }
+
+  section {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
   }
 }

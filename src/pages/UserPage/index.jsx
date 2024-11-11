@@ -38,18 +38,32 @@ const UserPage = () => {
     email: "",
     pass: "",
   });
+  const [newAddress, setNewAddress] = useState({
+    name: "",
+    address: "",
+    number: "",
+    complement: "",
+    cep: "",
+    city: "",
+    state: "",
+  });
+  const [address, setAddress] = useState([]);
+
   const service = UserService();
 
   useEffect(() => {
     const getData = async () => {
-      const response = await getUserInfo();
+      const userResponse = await getUserInfo();
       setUserInfo({
-        id: response.user.USUARIO_ID,
-        name: response.user.USUARIO_NOME,
-        cpf: response.user.USUARIO_CPF,
-        email: response.user.USUARIO_EMAIL,
-        pass: response.user.USUARIO_SENHA,
+        id: userResponse.user.USUARIO_ID,
+        name: userResponse.user.USUARIO_NOME,
+        cpf: userResponse.user.USUARIO_CPF,
+        email: userResponse.user.USUARIO_EMAIL,
+        pass: userResponse.user.USUARIO_SENHA,
       });
+
+      const addressResponse = await service.GetAddress(token);
+      setAddress(addressResponse);
     };
 
     getData();
@@ -58,18 +72,69 @@ const UserPage = () => {
   const updateUser = async () => {
     try {
       const response = await service.UpdateUser(userInfo, token);
-      if(response) addToast(response.data, response.error ? "fail" : "success");
-    } catch(err) {
-        addToast("Erro ao atualizar informações do usuário", "fail");
-      }
-  }
+      if (response)
+        addToast(response.data, response.error ? "fail" : "success");
+    } catch (err) {
+      addToast("Erro ao atualizar informações do usuário", "fail");
+    }
+  };
 
   const handleChangePage = (id) => {
     setPage(id);
   };
 
   const PageAddress = () => {
-    return <div>Endereco</div>;
+    const renderAddress = () => {
+      const settingAddressInfo = (id) => {
+        const findAddress = address.find((item) => item.ENDERECO_ID === id);
+
+        setNewAddress({
+          name: findAddress.ENDERECO_NOME,
+          address: findAddress.ENDERECO_LOGRADOURO,
+          number: findAddress.ENDERECO_NUMERO,
+          complement: findAddress.ENDERECO_COMPLEMENTO,
+          cep: findAddress.ENDERECO_CEP,
+          city: findAddress.ENDERECO_CIDADE,
+          state: findAddress.ENDERECO_ESTADO,
+        });
+      };
+
+      return address.map((item, i) => (
+        <tr onClick={() => settingAddressInfo(item.ENDERECO_ID)} key={i}>
+          <td>{item.ENDERECO_NOME}</td>
+          <td>{item.ENDERECO_LOGRADOURO}</td>
+          <td>{item.ENDERECO_NUMERO}</td>
+        </tr>
+      ));
+    };
+
+    const cleanUp = () => {
+      setNewAddress({
+        name: "",
+        address: "",
+        number: "",
+        complement: "",
+        cep: "",
+        city: "",
+        state: "",
+      });
+    };
+
+    return (
+      <div className="address-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Logradouro</th>
+              <th>Numero</th>
+            </tr>
+          </thead>
+          <tbody>{renderAddress()}</tbody>
+        </table>
+        <Button click={cleanUp} placeholder={"Adicionar Endereço"} />
+      </div>
+    );
   };
 
   const PageUser = () => {
@@ -127,7 +192,11 @@ const UserPage = () => {
           />
         </span>
 
-        <Button margin={"0 auto"} click={updateUser} placeholder={"Atualizar Informações"} />
+        <Button
+          margin={"0 auto"}
+          click={updateUser}
+          placeholder={"Atualizar Informações"}
+        />
       </div>
     );
   };
@@ -158,6 +227,107 @@ const UserPage = () => {
             </div>
           ))}
         </div>
+      </div>
+    );
+  };
+
+  const AddressRegister = () => {
+    return (
+      <div className="page-address-container">
+        <span>
+          <label>Nome</label>
+          <Input
+            state={newAddress}
+            setState={setNewAddress}
+            name="name"
+            value={newAddress?.name}
+            placeholder={"nome..."}
+            width="100%"
+            padding={"1rem"}
+          />
+        </span>
+
+        <span>
+          <label>Email</label>
+          <Input
+            state={newAddress}
+            setState={setNewAddress}
+            name="address"
+            value={newAddress?.address}
+            placeholder={"email..."}
+            width="100%"
+            padding={"1rem"}
+          />
+        </span>
+
+        <span>
+          <label>CPF</label>
+          <Input
+            state={newAddress}
+            setState={setNewAddress}
+            name="cep"
+            value={newAddress?.cep}
+            placeholder={"CPF..."}
+            width="100%"
+            padding={"1rem"}
+          />
+        </span>
+
+        <span>
+          <label>Senha</label>
+          <Input
+            state={newAddress}
+            setState={setNewAddress}
+            name="city"
+            value={newAddress?.city}
+            placeholder={"senha..."}
+            width="100%"
+            padding={"1rem"}
+          />
+        </span>
+
+        <span>
+          <label>Senha</label>
+          <Input
+            state={newAddress}
+            setState={setNewAddress}
+            name="complement"
+            value={newAddress?.complement}
+            placeholder={"senha..."}
+            width="100%"
+            padding={"1rem"}
+          />
+        </span>
+
+        <span>
+          <label>Senha</label>
+          <Input
+            state={newAddress}
+            setState={setNewAddress}
+            name="number"
+            value={newAddress?.number}
+            placeholder={"senha..."}
+            width="100%"
+            padding={"1rem"}
+          />
+        </span>
+
+        <span>
+          <label>Senha</label>
+          <Input
+            state={newAddress}
+            setState={setNewAddress}
+            name="state"
+            value={newAddress?.state}
+            placeholder={"senha..."}
+            width="100%"
+            padding={"1rem"}
+          />
+        </span>
+        <section>
+          <Button click={updateUser} placeholder={"Excluir"} />
+          <Button click={updateUser} placeholder={"Atualizar Informações"} />
+        </section>
       </div>
     );
   };
@@ -203,6 +373,7 @@ const UserPage = () => {
           {getPageToRender(page)}
         </div>
       </div>
+      {page === 2 && newAddress.name !== "" && <AddressRegister />}
     </div>
   );
 };
