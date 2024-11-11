@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import "./styled.scss";
 
 const Button = ({
@@ -9,7 +9,8 @@ const Button = ({
   padding,
   link = false,
   alternative = false,
-  backgroundColor
+  borderRadius,
+  margin
 }) => {
   let buttonClass = "custom-btn";
 
@@ -21,7 +22,7 @@ const Button = ({
 
   return (
     <button
-      style={{ width, padding, }}
+      style={{ width, padding, borderRadius, margin}}
       className={buttonClass}
       type={submit ? "submit" : "button"}
       onClick={click}

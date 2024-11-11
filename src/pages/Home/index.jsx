@@ -45,7 +45,7 @@ const Home = () => {
         </section>
 
         <div className="products-column">
-          <span>Conheça nossos produtos</span>
+          <span className="title_products">Conheça nossos produtos</span>
           <div className="card-wrapper">
             {product.map((item, i) => (
               <Card

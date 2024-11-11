@@ -24,12 +24,11 @@ const Products = () => {
     <>
       <Menu />
       <PageWrapper  id="wrapper-products">
-        <div className="column"></div>
+        {/* <div className="column"></div> */}
         <div className="column">
           {product.map((item, i) => (
             <Card key={i} item={item} setState={setQuantity} state={quantity} id={"card-"+item.PRODUTO_ID} click={() => sendToCart(item.PRODUTO_ID, quantity['card-'+item.PRODUTO_ID])}/>
           ))}
-         
         </div>
       </PageWrapper>
     </>

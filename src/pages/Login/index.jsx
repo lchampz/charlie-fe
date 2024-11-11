@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { useAuth } from "../../hooks/useAuth";
-import { ProductService } from "../../services/Product";
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -31,8 +30,6 @@ const Login = () => {
     cep: "",
     registerPass: "",
   });
-
-  const service = ProductService();
 
   const handleToggleRegister = () => {
     setIsRegister((prev) => !prev);
@@ -164,6 +161,7 @@ const Login = () => {
           }}
         >
           <AlternativeButton
+            borderRadius={"30px"}
             padding={"1rem 2rem"}
             width="200px"
             placeholder={"Cadastrar"}
@@ -207,6 +205,7 @@ const Login = () => {
 
         <span className="login-btns">
           <AlternativeButton
+          borderRadius={"30px"}
             padding={"0.5rem 2rem"}
             click={login}
             placeholder={"Login"}
