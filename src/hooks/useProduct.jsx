@@ -14,6 +14,7 @@ const ProductContext = createContext({
   fetchProducts: () => {},
 });
 
+// eslint-disable-next-line react/prop-types
 export const ProductProvider = ({ children }) => {
   const [product, setProduct] = useState([]);
   const { token } = useAuth();
@@ -51,6 +52,7 @@ export const ProductProvider = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useProduct = () => {
   const context = useContext(ProductContext);
   if (!context) {

@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react";
 import Button from "../Button";
 import Modal from "../Modal";
+import no_sweet from "../../assets/no-sweet.png"
 
 import "./styled.scss";
 import { useToast } from "../../hooks/useToast";
-
 
 const props = {
   PRODUTO_ID: 0,
@@ -29,7 +29,7 @@ const props = {
 
 const Card = ({
   item = props,
-  title = "comprar",
+  title = "Comprar",
   click,
   setState,
   state,
@@ -42,7 +42,7 @@ const Card = ({
     let isMounted = true;
 
     if (isMounted) {
-      setState((prevState) => ({ ...prevState, [id]: 1 })); 
+      setState((prevState) => ({ ...prevState, [id]: 1 }));
     }
 
     return () => {
@@ -95,7 +95,7 @@ const Card = ({
         >
           <div className="card-img">
             <div className="discount-percentage">15% off</div>
-            
+            {item.imagens && item.imagens.length > 0 && item.imagens[0].IMAGEM_URL ? <img src={item.imagens[0].IMAGEM_URL} alt="imagem produto" /> : <img id="no_sweet" src={no_sweet} alt="imagem padrão" />}
           </div>
           <div className="card-info">
             <p className="card-title">{item.PRODUTO_NOME}</p>
@@ -118,7 +118,7 @@ const Card = ({
           <Button click={click} placeholder={title} />
         </div>
       </div>
-      <Modal item={item} open={modal} close={handleOpenCloseModal}/>
+      <Modal item={item} open={modal} close={handleOpenCloseModal} />
     </>
   );
 };

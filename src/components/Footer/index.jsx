@@ -10,7 +10,7 @@ export default function Footer() {
 		<section className="informations">
 			<div className="principal">
 				<h3>Principal</h3>
-				<a href="">Produtos</a>
+				<a href="/products">Produtos</a>
 				<a href="">Quem Somos</a>
 				<a href="">Carrinho</a>
 				<a href="">Contato</a>
@@ -31,3 +31,4 @@ export default function Footer() {
 </footer>
 	)
 }
+

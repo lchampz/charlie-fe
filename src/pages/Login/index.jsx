@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { useAuth } from "../../hooks/useAuth";
-import { ProductService } from "../../services/Product";
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -31,8 +30,6 @@ const Login = () => {
     cep: "",
     registerPass: "",
   });
-
-  const service = ProductService();
 
   const handleToggleRegister = () => {
     setIsRegister((prev) => !prev);

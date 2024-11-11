@@ -33,7 +33,7 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	margin-top: 8.0rem;
+	margin-top: -3.0rem;
 
 	.titulo{
 		display: flex;
@@ -187,6 +187,7 @@
   }
 }
 
+
 .products-column {
 	display: flex;
 	flex-direction: column;
@@ -196,14 +197,27 @@
 
 	span {
 		font-size: 55px;
-		font-family: $cursive-font;
+		font-family: $font-family;
 		color: $dark-gray;
-		padding: 20px 0;
+	}
+
+	.card-btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    gap: 19px;
 	}
 }
 
+.title_products {
+	font-family: $cursive-font !important;
+	margin: 3.0rem 0;
+}
+
 .card-wrapper {
-	padding: 0rem 0rem 1rem 0rem;
+	padding: 0rem 0rem 2rem 0rem;
 	display: flex;
 	align-items: center;
 	gap: 20px;
@@ -212,3 +226,6 @@
 	flex-direction: row;
 }
 
+.card .card-img .discount-percentage {
+	font-size: 25px;
+}
