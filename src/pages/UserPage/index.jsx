@@ -39,7 +39,7 @@ const UserPage = () => {
     pass: "",
   });
   const [newAddress, setNewAddress] = useState({
-    name: "",
+    name: null,
     address: "",
     number: "",
     complement: "",
@@ -373,7 +373,7 @@ const UserPage = () => {
           {getPageToRender(page)}
         </div>
       </div>
-      {page === 2 && newAddress.name !== "" && <AddressRegister />}
+      {page === 2 && newAddress.name !== null && <AddressRegister />}
     </div>
   );
 };
