@@ -132,7 +132,7 @@ const UserPage = () => {
           </thead>
           <tbody>{renderAddress()}</tbody>
         </table>
-        <Button click={cleanUp} placeholder={"Adicionar Endereço"} />
+        <Button click={cleanUp} placeholder={"Adicionar Novo Endereço"} />
       </div>
     );
   };

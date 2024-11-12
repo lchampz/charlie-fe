@@ -10,25 +10,25 @@ import { useAuth } from "./useAuth";
 
 const ProductContext = createContext({
   product: [],
-  
+  searchedProducts: [],
+  searchProducts: (name) => {},
   fetchProducts: () => {},
 });
 
 // eslint-disable-next-line react/prop-types
 export const ProductProvider = ({ children }) => {
   const [product, setProduct] = useState([]);
+  const [ searchedProducts, setSearchedProducts ] = useState([]);
   const { token } = useAuth();
 
   const fetchProducts = useCallback(async () => {
     const service = ProductService(token);
 
     try {
-      
-
       const response = await service.GetActiveProducts();
-
       if (response) {
         setProduct(response);
+        setSearchedProducts(response);
       } else {
         console.error("[ERROR] " + response);
       }
@@ -37,16 +37,22 @@ export const ProductProvider = ({ children }) => {
     }
   }, [token]);
 
+  const searchProducts = (name) => {
+    const filteredProducts = product.filter(item =>
+      item.PRODUTO_NOME.toLowerCase().includes(name.toLowerCase())
+    );
+    setSearchedProducts(filteredProducts);
+  };
+  
+
   useEffect(() => {
-    
-    
     if (token) {
       fetchProducts();
     }
   }, [token]);
 
   return (
-    <ProductContext.Provider value={{ product, fetchProducts }}>
+    <ProductContext.Provider value={{ product, fetchProducts, searchedProducts, searchProducts}}>
       {children}
     </ProductContext.Provider>
   );

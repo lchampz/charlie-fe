@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
+import { useProduct } from "../../hooks/useProduct";
 import Logo from "../../assets/logo.png";
 import Search from "../../assets/search.png";
 import Cart from "../../assets/cart.png";
 import Input from "../Input";
 import Button from "../Button";
+
 // import menu_ondinha from "../../assets/menu.png";
 // import Menu_back from "../../assets/menu.png";
 
@@ -14,14 +16,20 @@ import "./mobile.scss";
 
 
 const Menu = () => {
-  const [search, setSearch] = useState({ search: "" });
+  const [search, setSearch] = useState({search: ""});
   const { cart, getCounter } = useCart();
+  const { searchProducts } = useProduct();
   const navigate = useNavigate();
   const menuOptions = [
     { name: "Home", link: "home" },
     { name: "Produtos", link: "products" },
     { name: "Contato", link: "contact" },
   ];
+
+  useEffect(() => {
+    
+    searchProducts(search.search.toString().toLowerCase())
+  },[search])
 
   return (
     <div className="menu-wrapper">
@@ -38,6 +46,7 @@ const Menu = () => {
             padding={"0.5rem"}
             icon={Search}
           />
+          
           <Button width="120px" placeholder={"Entrar"} />
           <div className="cart-counter">
             {getCounter() > 0 ? <div className="counter">{getCounter()}</div> :null}

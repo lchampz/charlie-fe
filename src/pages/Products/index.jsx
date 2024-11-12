@@ -11,11 +11,11 @@ import "./styled.scss"
 
 const Products = () => {
   const [quantity, setQuantity] = useState(0);
-  const { product } = useProduct();
+  const { searchedProducts } = useProduct();
   const { addToCart } = useCart();
 
   const sendToCart = (id, qtd) => {
-    const findedItem = product.find((item) => id === item.PRODUTO_ID);
+    const findedItem = searchedProducts.find((item) => id === item.PRODUTO_ID);
 
     addToCart(findedItem, qtd);
   };
@@ -26,9 +26,9 @@ const Products = () => {
       <PageWrapper  id="wrapper-products">
         {/* <div className="column"></div> */}
         <div className="column">
-          {product?.map((item, i) => (
+          {searchedProducts.length > 0 ? searchedProducts?.map((item, i) => (
             <Card key={i} item={item} setState={setQuantity} state={quantity} id={"card-"+item.PRODUTO_ID} click={() => sendToCart(item.PRODUTO_ID, quantity['card-'+item.PRODUTO_ID])}/>
-          ))}
+          )) : <div>Nenhum produto encontrado!</div>}
         </div>
       </PageWrapper>
     </>
