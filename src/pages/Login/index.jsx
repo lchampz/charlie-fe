@@ -1,16 +1,15 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom"; 
 import { useAuth } from "../../hooks/useAuth";
-
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import PageWrapper from "../../components/PageWrapper";
 import AlternativeButton from "../../components/AlternativeButton";
 import BG from "../../assets/bgcolor.png";
 import Logo from "../../assets/logo.png";
+import { useLoading } from "../../hooks/useLoading";
 
 import "./styled.scss";
-import { useLoading } from "../../hooks/useLoading";
 
 const Login = () => {
   const { handleLogin, handleRegister } = useAuth();
@@ -31,23 +30,36 @@ const Login = () => {
     registerPass: "",
   });
 
+  const navigate = useNavigate();
+
   const handleToggleRegister = () => {
     setIsRegister((prev) => !prev);
   };
 
+  const validateLoginForm = () => {
+    if (!loginForm.username || !loginForm.pass) {
+      alert("Por favor, preencha todos os campos.");
+      return false;
+    }
+    return true;
+  };
+
+
   const login = async () => {
-    try {
-      setLoading(true);
-      await handleLogin(loginForm.username, loginForm.pass);
-    } finally {
-      setLoading(false);
+    if (validateLoginForm()) {
+      try {
+        setLoading(true);
+        await handleLogin(loginForm.username, loginForm.pass);
+        navigate("/home");
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
   const register = async () => {
     try {
       setLoading(true);
-      
       await handleRegister(registerForm.name, registerForm.registerPass, registerForm.email, registerForm.cpf);
     } finally {
       setLoading(false);
@@ -57,34 +69,17 @@ const Login = () => {
   const RegisterForm = () => {
     return (
       <div className="form-register">
-        <span
-          style={{
-            marginBottom: "2rem",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+        <span style={{ marginBottom: "2rem", display: "flex", justifyContent: "center" }}>
           <img className="logo" src={Logo} alt="Logo" />
         </span>
 
-        <span
-          style={{ display: "flex", gap: "10px", justifyContent: "stretch" }}
-        >
+        <span style={{ display: "flex", gap: "10px", justifyContent: "stretch" }}>
           <Input
             state={registerForm}
             setState={setRegisterForm}
             name="name"
             value={registerForm.name}
-            placeholder={"nome..."}
-            width="100%"
-            padding={"1rem"}
-          />
-          <Input
-            state={registerForm}
-            setState={setRegisterForm}
-            name="lastname"
-            value={registerForm.lastname}
-            placeholder={"sobrenome..."}
+            placeholder={"Nome..."}
             width="100%"
             padding={"1rem"}
           />
@@ -94,7 +89,7 @@ const Login = () => {
           setState={setRegisterForm}
           name="email"
           value={registerForm.email}
-          placeholder={"email..."}
+          placeholder={"E-mail..."}
           width="100%"
           padding={"1rem"}
         />
@@ -108,44 +103,13 @@ const Login = () => {
             width="100%"
             padding={"1rem"}
           />
-          <Input
-            state={registerForm}
-            setState={setRegisterForm}
-            name="cep"
-            value={registerForm.cep}
-            placeholder={"CEP..."}
-            width="100%"
-            padding={"1rem"}
-          />
-        </span>
-        <span
-          style={{ display: "flex", gap: "10px", justifyContent: "stretch" }}
-        >
-          <Input
-            state={registerForm}
-            setState={setRegisterForm}
-            name="logradouro"
-            value={registerForm.logradouro}
-            placeholder={"endereço..."}
-            width="70%"
-            padding={"1rem"}
-          />
-          <Input
-            state={registerForm}
-            setState={setRegisterForm}
-            name="num"
-            value={registerForm.num}
-            placeholder={"Nº..."}
-            width="30%"
-            padding={"1rem"}
-          />
         </span>
         <Input
           state={registerForm}
           setState={setRegisterForm}
           name="registerPass"
           value={registerForm.pass}
-          placeholder={"senha..."}
+          placeholder={"Senha..."}
           width="100%"
           padding={"1rem"}
           password
@@ -187,7 +151,7 @@ const Login = () => {
             setState={setLoginForm}
             name="username"
             value={loginForm.username}
-            placeholder={"login..."}
+            placeholder={"E-mail..."}
             width="300px"
             padding={"1rem"}
           />
@@ -196,7 +160,7 @@ const Login = () => {
             setState={setLoginForm}
             name="pass"
             value={loginForm.pass}
-            placeholder={"senha..."}
+            placeholder={"Senha..."}
             width="300px"
             padding={"1rem"}
             password
@@ -205,7 +169,7 @@ const Login = () => {
 
         <span className="login-btns">
           <AlternativeButton
-          borderRadius={"30px"}
+            borderRadius={"30px"}
             padding={"0.5rem 2rem"}
             click={login}
             placeholder={"Login"}
@@ -230,17 +194,12 @@ const Login = () => {
 
         <div
           id="bg-slider"
-          className={`column not-show ${
-            isRegister ? "is-register" : "is-login"
-          }`}
+          className={`column not-show ${isRegister ? "is-register" : "is-login"}`}
         >
           <img className="bg-login" src={BG} alt="Background" />
         </div>
 
-        <div
-          style={{ opacity: isRegister ? 0 : 1 }}
-          className={`column ${isRegister ? "not-show" : ""}`}
-        >
+        <div style={{ opacity: isRegister ? 0 : 1 }} className={`column ${isRegister ? "not-show" : ""}`}>
           <LoginForm />
         </div>
       </div>

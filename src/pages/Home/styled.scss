@@ -229,3 +229,97 @@
 .card .card-img .discount-percentage {
 	font-size: 25px;
 }
+
+.depoimentos {
+  position: relative;
+  padding: 60px 0;
+
+  .container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      
+      .col-one {
+        .hint-title {
+          font-size: 18px;
+          color: $red;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin-bottom: 20px;
+        }
+        
+        .title {
+          font-size: 36px;
+          font-weight: bold;
+          color: #444;
+          margin-bottom: 40px;
+        }
+
+        .depoimento {
+          background-color: $light-pink;
+          padding: 30px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          margin-bottom: 30px;
+          
+          .container-dados-depoimento {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+          
+            
+            .nome-depoimento {
+              font-size: 18px;
+              font-weight: bold;
+              color: #333;
+            }
+
+            .nota-depoimento {
+              font-size: 16px;
+              display: flex;
+              align-items: center;
+              
+              span {
+                margin-right: 5px;
+              }
+            }
+          }
+
+          .texto-depoimento {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+          }
+        }
+        
+        .btn-container {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+        }
+
+				.btn {
+					padding: 10px 20px;
+					background-color: $dark-pink;
+					color: #fff;
+					border: none;
+					border-radius: 5px;
+					cursor: pointer;
+					transition: background-color 0.3s ease;
+
+					&:hover {
+						background-color: $yellow;
+					}
+				}
+      }
+		}
+	}
+}
+

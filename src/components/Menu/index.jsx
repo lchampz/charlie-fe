@@ -8,9 +8,6 @@ import Cart from "../../assets/cart.png";
 import Input from "../Input";
 import Button from "../Button";
 
-// import menu_ondinha from "../../assets/menu.png";
-// import Menu_back from "../../assets/menu.png";
-
 import "./styled.scss";
 import "./mobile.scss";
 
@@ -25,16 +22,16 @@ const Menu = () => {
     { name: "Produtos", link: "products" },
     { name: "Contato", link: "contact" },
   ];
+  
 
   useEffect(() => {
-    
     searchProducts(search.search.toString().toLowerCase())
   },[search])
 
   return (
     <div className="menu-wrapper">
       <div className="top-side">
-        <img className="logo-menu" src={Logo} alt="logo" />
+        <img className="logo-menu" src={Logo} alt="logo" onClick={() => navigate("/home")}/>
         <div className="wrapper-menu-btns">
           <Input
             state={search}
@@ -47,7 +44,7 @@ const Menu = () => {
             icon={Search}
           />
           
-          <Button width="120px" placeholder={"Entrar"} />
+          <Button width="120px" placeholder={"Entrar"} click={() =>navigate("/login")} />
           <div className="cart-counter">
             {getCounter() > 0 ? <div className="counter">{getCounter()}</div> :null}
             <img onClick={() => console.log(cart)} className="cart-icon" src={Cart} alt="carrinho" />
