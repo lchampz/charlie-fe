@@ -102,7 +102,6 @@ const Home = () => {
         {activeDepoimento === 1 && (
             <div className="depoimento">
               <div className="container-dados-depoimento">
-                <div className="imagem-depoimento"></div>
                 <div>
                   <p className="nome-depoimento">
                     <b>Pedro Marques</b>
