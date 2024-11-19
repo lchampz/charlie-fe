@@ -1,9 +1,16 @@
+
+import { useAuth } from "../../hooks/useAuth";
 import { useCart } from "../../hooks/useCart";
+import { useNavigate } from "react-router-dom";
+
+import Exit from "../../assets/exit.svg";
 
 import "./styled.scss";
 
 const Payout = () => {
   const { cart, getSubtotal, removeFromCart, addToCart } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const ProductComponent = ({ name, price, img, qtd, item, storage }) => {
     const handleRemoveOne = () => qtd === 1 ? null : removeFromCart(item, 1);
@@ -32,9 +39,17 @@ const Payout = () => {
   };
 
   return (
+    <>
     <div className="wrapper-payout">
       <div className="first-column">
-        <p className="title">Carrinho de Compras</p>
+        <span>
+        <div className="exit" onClick={() => navigate("/")}>
+              <img src={Exit} alt="sair" />
+              <p> Sair</p>
+            </div>
+            <p className="title">Carrinho de Compras</p>
+        </span>
+        
         <div className="header">
           <p>Produto</p>
           <p>Quantidade</p>
@@ -75,7 +90,7 @@ const Payout = () => {
         <div className="payment-info">
           <span>
             <label>Nome na Nota Fiscal</label>
-            <p>Victor Hugo</p>
+            <p>{user?.name}</p>
           </span>
           <span>
             <label>CPF</label>
@@ -83,7 +98,7 @@ const Payout = () => {
           </span>
           <span>
             <label>Email</label>
-            <p>joca11victor@*******.com</p>
+            <p>{user?.email}</p>
           </span>
           <button onClick={() => console.log(cart)} className="btn-checkout">
             Finalizar Pagamento
@@ -91,6 +106,7 @@ const Payout = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
