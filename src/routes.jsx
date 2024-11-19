@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/404";
 import Products from "./pages/Products";
 import UserPage from "./pages/UserPage";
+import Payout from "./pages/Payout";
 
 const AppRoutes = () => {
   const routes = [
@@ -11,7 +12,8 @@ const AppRoutes = () => {
     { path: "/login", name: "Login", element: <Login /> },
     { path: "/home", name: "Home", element: <Home /> },
     { path: "/products", name: "Produtos", element: <Products /> },
-    { path: "/usuario", name: "Usuario", element: <UserPage /> },
+    { path: "/user", name: "Usuario", element: <UserPage /> },
+    { path: "/payout", name: "Pagamento", element: <Payout /> },
     { path: "*", name: "NotFound", element: <NotFound /> },
   ];
 

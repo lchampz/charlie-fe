@@ -235,6 +235,7 @@
   padding: 60px 0;
 
   .container {
+	width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -245,9 +246,16 @@
       display: flex;
       justify-content: center;
       gap: 30px;
+	  width: 100%;
       
       .col-one {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 80%;
         .hint-title {
+			align-self: flex-start;
           font-size: 18px;
           color: $red;
           text-transform: uppercase;
@@ -257,6 +265,7 @@
         
         .title {
           font-size: 36px;
+		  align-self: flex-start;
           font-weight: bold;
           color: #444;
           margin-bottom: 40px;
@@ -265,6 +274,8 @@
         .depoimento {
           background-color: $light-pink;
           padding: 30px;
+		 
+		  margin: 10px;
           border-radius: 8px;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
           margin-bottom: 30px;
@@ -294,8 +305,10 @@
 
           .texto-depoimento {
             font-size: 16px;
+			
             color: #666;
             line-height: 1.5;
+			transition: all 0.3s ease-in-out;
           }
         }
         

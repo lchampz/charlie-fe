@@ -7,7 +7,6 @@ import Footer from "../../components/Footer";
 import banner from "../../assets/home.png";
 import delicias from "../../assets/delicias.png";
 import pedaco from "../../assets/pedaco.png";
-
 import "./styled.scss";
 import "./mobile.scss";
 
@@ -19,12 +18,52 @@ const Home = () => {
 
   const sendToCart = (id, qtd) => {
     const findedItem = product.find((item) => id === item.PRODUTO_ID);
-    addToCart(findedItem, qtd);
+    if(findedItem) addToCart(findedItem, qtd);
   };
 
   const abrirDepoimento = (depoimento) => {
     setActiveDepoimento(depoimento);
   };
+
+  const depoimentos = [
+    {
+      id: 1,
+      nome: "Pedro Marques",
+      nota: "4.5",
+      estrelas: "⭐⭐⭐⭐☆",
+      texto: "Muito bom, recomendo demais! Comida muito bem feita pela confeiteira, atendimento dentro dos parâmetros e boa comunicação com o cliente.",
+    },
+    {
+      id: 2,
+      nome: "Ana Beatriz",
+      nota: "5.0",
+      estrelas: "⭐⭐⭐⭐⭐",
+      texto: "Simplesmente apaixonada! Os doces são maravilhosos, e dá pra sentir o cuidado com cada detalhe. Desde a embalagem até o sabor, tudo é impecável. Recomendo muito, principalmente os brigadeiros gourmet, que são de outro nível!",
+    },
+    {
+      id: 3,
+      nome: "Lucas Silva",
+      nota: "4.0",
+      estrelas: "⭐⭐⭐⭐☆",
+      texto: "Nunca pensei que encontraria doces tão bem feitos. A qualidade é excelente, e o sabor é inesquecível! Comprei para uma festa e foi um sucesso, todos queriam saber onde eu tinha encomendado. Atendimento rápido e atencioso, com certeza virei cliente fiel.",
+    },
+  ];
+
+  const renderDepoimento = (depoimento) => (
+    <div className="depoimento" key={depoimento.id}>
+      <div className="container-dados-depoimento">
+        <div>
+          <p className="nome-depoimento"><b>{depoimento.nome}</b></p>
+          <p className="nota-depoimento">
+            <span>{depoimento.estrelas}</span> <span>{depoimento.nota}</span>
+          </p>
+        </div>
+      </div>
+      <p className="texto-depoimento">
+        <span>{depoimento.texto}</span>
+      </p>
+    </div>
+  );
 
   return (
     <>
@@ -38,7 +77,6 @@ const Home = () => {
               Ver Novidades
             </a>
           </div>
-
           <div className="img_menu">
             <img src={banner} alt="Imagem de Cupcake" />
           </div>
@@ -47,7 +85,7 @@ const Home = () => {
         <div className="products-column">
           <span className="title_products">Conheça nossos produtos</span>
           <div className="card-wrapper">
-            {product.map((item, i) => (
+          {product.map((item, i) => (
               <Card
                 key={i}
                 item={item}
@@ -70,10 +108,7 @@ const Home = () => {
           <div className="texto_pedaco">
             <h2>Vai um pouquinho aí?</h2>
             <p>
-              Delicie-se com as criações mais irresistíveis! Nossos doces são
-              feitos com ingredientes selecionados e carinho em cada detalhe.
-              Seja para adoçar seu dia ou transformar momentos especiais, cada
-              mordida é uma explosão de sabor!
+              Delicie-se com as criações mais irresistíveis! Nossos doces são feitos com ingredientes selecionados e carinho em cada detalhe. Seja para adoçar seu dia ou transformar momentos especiais, cada mordida é uma explosão de sabor!
             </p>
           </div>
         </section>
@@ -82,94 +117,26 @@ const Home = () => {
           <img src={delicias} alt="grupo de imagens de bolos" />
         </section>
 
-<section className="depoimentos" id="depoimentos">
-  <div className="background-depoimentos"></div>
-
-  <div className="container">
-    <div className="row">
-      <div>
-        <div className="card-depoimentos"></div>
-      </div>
-
-      <div className="col-one">
-        <span className="hint-title">
-          <b>Depoimentos</b>
-        </span>
-        <h1 className="title">
-          <b>O que dizem sobre nós?</b>
-        </h1>
-        <div>
-        {activeDepoimento === 1 && (
-            <div className="depoimento">
-              <div className="container-dados-depoimento">
-                <div className="imagem-depoimento"></div>
+        <section className="depoimentos" id="depoimentos">
+          <div className="background-depoimentos"></div>
+          <div className="container">
+            <div className="row">
+              <div className="col-one">
+                <span className="hint-title"><b>Depoimentos</b></span>
+                <h1 className="title"><b>O que dizem sobre nós?</b></h1>
                 <div>
-                  <p className="nome-depoimento">
-                    <b>Pedro Marques</b>
-                  </p>
-                  <p className="nota-depoimento">
-                    <span>⭐⭐⭐⭐☆</span> <span>4.5</span>
-                  </p>
-                </div>
-              </div>
-              <p className="texto-depoimento">
-                <span>
-                  “Muito bom, recomendo demais! Comida muito bem feita pela confeiteira, atendimento dentro dos parâmetros e boa comunicação com o cliente.”
-                </span>
-              </p>
-            </div>
-          )}
-
-          {activeDepoimento === 2 && (
-            <div className="depoimento">
-              <div className="container-dados-depoimento">
-                <div>
-                  <p className="nome-depoimento">
-                    <b>Ana Beatriz</b>
-                  </p>
-                  <p className="nota-depoimento">
-                    <span>⭐⭐⭐⭐⭐</span> <span>5.0</span>
-                  </p>
-                </div>
-              </div>
-              <p className="texto-depoimento">
-                <span>
-                  “Simplesmente apaixonada! Os doces são maravilhosos, e dá pra sentir o cuidado com cada detalhe. Desde a embalagem até o sabor, tudo é impecável. Recomendo muito, principalmente os brigadeiros gourmet, que são de outro nível!”
-                </span>
-              </p>
-            </div>
-          )}
-
-          {activeDepoimento === 3 && (
-            <div className="depoimento">
-              <div className="container-dados-depoimento">
-                <div>
-                  <p className="nome-depoimento">
-                    <b>Lucas Silva</b>
-                  </p>
-                  <p className="nota-depoimento">
-                    <span>⭐⭐⭐⭐☆</span> <span>4.0</span>
-                  </p>
-                </div>
-              </div>
-              <p className="texto-depoimento">
-                <span>
-                  “Nunca pensei que encontraria doces tão bem feitos. A qualidade é excelente, e o sabor é inesquecível! Comprei para uma festa e foi um sucesso, todos queriam saber onde eu tinha encomendado. Atendimento rápido e atencioso, com certeza virei cliente fiel.”
-                </span>
-              </p>
-                    </div>
-                  )}
+                  {renderDepoimento(depoimentos.find(d => d.id === activeDepoimento))}
                 </div>
                 <div className="btn-container">
-                  <button className="btn" onClick={() => abrirDepoimento(1)}>
-                    1
-                  </button>
-                  <button className="btn" onClick={() => abrirDepoimento(2)}>
-                    2
-                  </button>
-                  <button className="btn" onClick={() => abrirDepoimento(3)}>
-                    3
-                  </button>
+                  {depoimentos.map((depo) => (
+                    <button
+                      key={depo.id}
+                      className="btn"
+                      onClick={() => abrirDepoimento(depo.id)}
+                    >
+                      {depo.id}
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>

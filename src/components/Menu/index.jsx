@@ -10,10 +10,12 @@ import Button from "../Button";
 
 import "./styled.scss";
 import "./mobile.scss";
+import { useAuth } from "../../hooks/useAuth";
 
 
 const Menu = () => {
   const [search, setSearch] = useState({search: ""});
+  const { token } = useAuth();
   const { cart, getCounter } = useCart();
   const { searchProducts } = useProduct();
   const navigate = useNavigate();
@@ -27,6 +29,10 @@ const Menu = () => {
   useEffect(() => {
     searchProducts(search.search.toString().toLowerCase())
   },[search])
+
+  const RenderButton = () => {
+    return token ? <Button width="120px" placeholder={"Minha Conta"} click={() =>navigate("/user")} /> : <Button width="120px" placeholder={"Entrar"} click={() =>navigate("/login")} /> 
+  }
 
   return (
     <div className="menu-wrapper">
@@ -44,10 +50,10 @@ const Menu = () => {
             icon={Search}
           />
           
-          <Button width="120px" placeholder={"Entrar"} click={() =>navigate("/login")} />
+          <RenderButton />
           <div className="cart-counter">
             {getCounter() > 0 ? <div className="counter">{getCounter()}</div> :null}
-            <img onClick={() => console.log(cart)} className="cart-icon" src={Cart} alt="carrinho" />
+            <img onClick={() => navigate("/payout")} className="cart-icon" src={Cart} alt="carrinho" />
           </div>
         </div>
       </div>

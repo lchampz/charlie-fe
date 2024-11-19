@@ -4,8 +4,9 @@ import { useToast } from "./useToast";
 const CartContext = createContext({
   cart: [],
   removeFromCart: (item, qtd = 1) => {},
-  addToCart: (item, qtd = 1) => {},
-  getCounter: () => Number
+  addToCart: (item, qtd = 1, toast = true) => {},
+  getCounter: () => Number,
+  getSubtotal: () => Number
 });
 
 export const CartProvider = ({ children }) => {
@@ -33,7 +34,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const addToCart = (item, qtd = 1) => {
+  const addToCart = (item, qtd = 1, toast = true) => {
 
     if(!item.estoque || item.estoque.PRODUTO_QTD <= 0) {
       addToast("Produto sem estoque!", "fail");
@@ -52,15 +53,19 @@ export const CartProvider = ({ children }) => {
       );
       setCart(updatedCart);
     }
-    addToast("Produto inserido com sucesso!", "success");
+    if(toast) addToast("Produto inserido com sucesso!", "success");
   };
 
   const getCounter = () => {
     return cart.reduce((acc, item) => acc + item.qtd, 0);
   }
 
+  const getSubtotal = () => {
+    return cart.reduce((acc, item) => acc + (item.qtd * item.PRODUTO_PRECO), 0)
+  }
+
   return (
-    <CartContext.Provider value={{ cart, removeFromCart, addToCart, getCounter }}>
+    <CartContext.Provider value={{ cart, removeFromCart, addToCart, getCounter, getSubtotal }}>
       {children}
     </CartContext.Provider>
   );

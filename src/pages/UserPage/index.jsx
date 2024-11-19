@@ -12,6 +12,8 @@ import Logo from "../../assets/logo.png";
 import "./styled.scss";
 import { UserService } from "../../services/User";
 import { useToast } from "../../hooks/useToast";
+import { useNavigate } from "react-router-dom";
+
 
 const cards = [
   {
@@ -26,10 +28,16 @@ const cards = [
     subtitle: "Editar/Cadastrar endereços para entrega.",
     id: 2,
   },
+  {
+    icon: Brush,
+    title: "Meus Pedidos",
+    subtitle: "Acompanhar o status dos meus pedidos.",
+    id: 3,
+  },
 ];
 
 const UserPage = () => {
-  const { user, getUserInfo, token } = useAuth();
+  const { user, getUserInfo, token, handleLogout } = useAuth();
   const addToast = useToast();
   const [page, setPage] = useState(0);
   const [userInfo, setUserInfo] = useState({
@@ -48,7 +56,8 @@ const UserPage = () => {
     state: "",
   });
   const [address, setAddress] = useState([]);
-
+  const navigate = useNavigate();
+ 
   const service = UserService();
 
   useEffect(() => {
@@ -82,6 +91,11 @@ const UserPage = () => {
   const handleChangePage = (id) => {
     setPage(id);
   };
+
+  const logoutAndRedirect = () => {
+    handleLogout();
+    navigate("/home");
+  }
 
   const PageAddress = () => {
     const renderAddress = () => {
@@ -352,7 +366,7 @@ const UserPage = () => {
               <p>Boa tarde,</p>
               <p>{user?.name}</p>
             </div>
-            <div className="exit">
+            <div className="exit" onClick={logoutAndRedirect}>
               <img src={Exit} alt="sair" />
               <p> Sair</p>
             </div>
