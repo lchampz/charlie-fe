@@ -12,8 +12,8 @@
 .card-contato {
   background-color: $white;
   padding: 30px;
-  position: relative;   // Tornando o elemento com posicionamento relativo
-  top: 225px;            // Move o conteúdo para baixo em relação à sua posição original
+  position: relative;   
+  bottom: 50px;
   border-radius: 20px;
   max-width: 800px;
   margin: auto;
@@ -33,7 +33,7 @@
 
       .titulo {
         font-family: $cursive-font;
-        font-size: 2.2rem;      // Reduz o tamanho da fonte do título
+        font-size: 2.2rem;    
         color: $dark-gray;
         margin-bottom: 15px;
         position: relative;
@@ -45,13 +45,13 @@
         font-family: $font-family;
         color: $dark-gray;
         line-height: 1.6;
-        font-size: 1rem;       // Reduz o tamanho da fonte do parágrafo
+        font-size: 1rem;     
       }
     }
 
     .form {
       background-color: $white;
-      padding: 20px;             // Reduz o padding do formulário
+      padding: 20px;             
       border-radius: 20px;
       max-width: 45%;
       box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
@@ -59,7 +59,7 @@
       h3 {
         font-family: $font-family;
         color: $dark-gray;
-        font-size: 1.3rem;      // Reduz o tamanho da fonte do título do formulário
+        font-size: 1.3rem;     
         margin-bottom: 15px;
       }
 
@@ -75,28 +75,28 @@
         width: 100%;
         padding: 10px;
         margin-bottom: 15px;
-        border: none;               // Remove todas as bordas
-        border-bottom: 1px solid $light-gray; // Adiciona borda apenas embaixo
-        border-radius: 0;           // Remove o arredondamento
+        border: none;              
+        border-bottom: 1px solid $light-gray; 
+        border-radius: 0;          
         font-family: $font-family;
-        font-size: 0.9rem;          // Reduz o tamanho da fonte dos inputs
-        background: transparent;    // Remove a cor de fundo (torna transparente)
+        font-size: 0.9rem;          
+        background: transparent;    
 
         &:focus {
-          outline: none;            // Remove a borda ao focar
-          border-bottom: 1px solid $dark-gray; // Destaca a borda inferior ao focar
+          outline: none;            
+          border-bottom: 1px solid $dark-gray; 
         }
       }
 
       textarea {
-        min-height: 80px;      // Reduz a altura mínima do textarea
-        background: transparent;  // Remove a cor de fundo do textarea
+        min-height: 80px;      
+        background: transparent;  
       }
 
       h6 {
         font-family: $font-family;
         color: $light-gray;
-        font-size: 0.8rem;     // Reduz o tamanho da fonte
+        font-size: 0.8rem;    
         margin-bottom: 15px;
       }
 
@@ -105,7 +105,7 @@
         color: white;
         border: 2px solid $dark-pink;
         padding: 7px;
-        width: 36%;            // O botão ocupará 50% da largura do contêiner pai
+        width: 36%;           
         border-radius: 80px;
         cursor: pointer;
         font-size: 0.9rem;
@@ -129,7 +129,7 @@
 .contact-cards {
   display: flex;
   justify-content: space-around;
-  margin-top: 30px;            // Ajuste da margem superior
+  margin-top: 30px;           
   width: 100%;
   
 
@@ -142,8 +142,7 @@
     text-align: center;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;   // Tornando o elemento com posicionamento relativo
-  top: 245px;    
+    position: relative;   
 
 
     &:hover {

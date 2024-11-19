@@ -2,9 +2,7 @@
 import { useAuth } from "../../hooks/useAuth";
 import { useCart } from "../../hooks/useCart";
 import { useNavigate } from "react-router-dom";
-
-import Exit from "../../assets/exit.svg";
-
+import Exit from "../../assets/fechar.png";
 import "./styled.scss";
 
 const Payout = () => {
@@ -45,7 +43,7 @@ const Payout = () => {
         <span>
         <div className="exit" onClick={() => navigate("/")}>
               <img src={Exit} alt="sair" />
-              <p> Sair</p>
+         
             </div>
             <p className="title">Carrinho de Compras</p>
         </span>

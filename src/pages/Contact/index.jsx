@@ -98,7 +98,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="contact-cards">
+     {/*    <div className="contact-cards">
           <div className="contact-card">
             <div className="icon">
               <img src={Telefone} alt="Telefone" />
@@ -123,7 +123,7 @@ export default function Contact() {
             <div className="info">+55 11 91234-5678</div>
           </div>
         </div>
-
+*/}
        
       </section>
       
