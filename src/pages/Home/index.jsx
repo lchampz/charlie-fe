@@ -11,7 +11,7 @@ import "./styled.scss";
 import "./mobile.scss";
 
 const Home = () => {
-  const { product } = useProduct();
+  const { searchedProducts } = useProduct();
   const [quantity, setQuantity] = useState(0);
   const { addToCart } = useCart();
   const [activeDepoimento, setActiveDepoimento] = useState(1);
@@ -85,7 +85,7 @@ const Home = () => {
         <div className="products-column">
           <span className="title_products">Conheça nossos produtos</span>
           <div className="card-wrapper">
-          {product.map((item, i) => (
+          {searchedProducts.map((item, i) => (
               <Card
                 key={i}
                 item={item}

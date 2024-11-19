@@ -239,8 +239,13 @@
     tbody tr:nth-child(even) {
       background-color: #78b2ca31;
     }
+    
     td:last-child {
       box-shadow: inset -10px 0px 0px -8px $dark-pink;
+    }
+
+    tbody tr {
+      box-shadow: inset 2px 0px 1px 0px $dark-pink;
     }
     
     tbody tr:last-child {

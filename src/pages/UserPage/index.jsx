@@ -14,7 +14,6 @@ import { UserService } from "../../services/User";
 import { useToast } from "../../hooks/useToast";
 import { useNavigate } from "react-router-dom";
 
-
 const cards = [
   {
     icon: Brush,
@@ -56,8 +55,9 @@ const UserPage = () => {
     state: "",
   });
   const [address, setAddress] = useState([]);
+  const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
- 
+
   const service = UserService();
 
   useEffect(() => {
@@ -73,6 +73,9 @@ const UserPage = () => {
 
       const addressResponse = await service.GetAddress(token);
       setAddress(addressResponse);
+
+      const ordersResponse = await service.GetOrders(token);
+      setOrders(ordersResponse.data);
     };
 
     getData();
@@ -95,7 +98,7 @@ const UserPage = () => {
   const logoutAndRedirect = () => {
     handleLogout();
     navigate("/home");
-  }
+  };
 
   const PageAddress = () => {
     const renderAddress = () => {
@@ -147,6 +150,35 @@ const UserPage = () => {
           <tbody>{renderAddress()}</tbody>
         </table>
         <Button click={cleanUp} placeholder={"Adicionar Novo Endereço"} />
+      </div>
+    );
+  };
+
+  const PageOrders = () => {
+    const renderOrders = () => {
+      return orders.map((item, i) => (
+        <tr key={i}>
+          <td>{item.order.PEDIDO_ID}</td>
+          <td>{item.order.endereco.ENDERECO_NOME}</td>
+          <td><p style={{color: "white", backgroundColor: "#4E65BF", padding: '5px', borderRadius: '10px'}}>{item.order.status.STATUS_DESC}</p></td>
+          <td>{item.order.PEDIDO_DATA}</td>
+        </tr>
+      ));
+    };
+
+    return (
+      <div className="address-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Pedido</th>
+              <th>Endereço</th>
+              <th>Status</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody>{renderOrders()}</tbody>
+        </table>
       </div>
     );
   };
@@ -354,6 +386,8 @@ const UserPage = () => {
         return <PageUser />;
       case 2:
         return <PageAddress />;
+      case 3:
+        return <PageOrders />;
     }
   };
 
