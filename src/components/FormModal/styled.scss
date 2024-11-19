@@ -1,0 +1,82 @@
+@import "../../scss/variables";
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($black, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+
+    .modal-container {
+        background-color: $white;
+        padding: 2rem;
+        border-radius: 20px;
+        max-width: 450px;
+        height: 200px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba($black, 0.1);
+        animation: fadeIn 0.3s ease-in-out;
+
+        position: relative; // Adicione isso para permitir o posicionamento absoluto do botão
+
+        h2 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: $green;
+            font-family: $cursive-font;
+        }
+
+        p {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            font-size: 1rem;
+            color: $light-gray;
+            font-family: $font-family;
+        }
+    }
+}
+
+.btn-fechar {
+    background-color: $pink;
+    color: white;
+    border: none;
+    padding: 7px;
+    border: 2px solid $dark-pink;
+    border-radius: 80px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    position: absolute;
+    width: 94px;
+    height: 29px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%); // Ajuste para garantir que o botão esteja perfeitamente centralizado
+
+    &:hover {
+        background-color: #f5f0f0;
+        color: $dark-pink;
+        border: 2px solid $dark-pink;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

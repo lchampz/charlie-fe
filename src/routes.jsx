@@ -5,12 +5,14 @@ import NotFound from "./pages/404";
 import Products from "./pages/Products";
 import UserPage from "./pages/UserPage";
 import Payout from "./pages/Payout";
+import Contact from "./pages/Contact";
 
 const AppRoutes = () => {
   const routes = [
     { path: "/", name: "Default", element: <Navigate to="/home" replace /> },
     { path: "/login", name: "Login", element: <Login /> },
     { path: "/home", name: "Home", element: <Home /> },
+    { path: "/contact", name: "Contato", element: <Contact /> },
     { path: "/products", name: "Produtos", element: <Products /> },
     { path: "/user", name: "Usuario", element: <UserPage /> },
     { path: "/payout", name: "Pagamento", element: <Payout /> },
