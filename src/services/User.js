@@ -23,5 +23,14 @@ export const UserService = () => {
         setLoading(false);
       }
     },
+    GetOrders: async (token) => {
+      try {
+        setLoading(true);
+        const response = await api.GET("/pedidos", null, {}, token);
+        return response;
+      } finally {
+        setLoading(false);
+      }
+    },
   };
 };
