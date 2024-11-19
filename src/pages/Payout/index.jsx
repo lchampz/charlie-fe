@@ -6,7 +6,8 @@ import { UserService } from "../../services/User";
 import { PaymentService } from "../../services/Payment";
 import { useToast } from "../../hooks/useToast";
 
-import Exit from "../../assets/exit.svg";
+import Trash from '../../assets/Lixeira.png'
+import Exit from '../../assets/Exit.svg'
 
 import "./styled.scss";
 
@@ -73,7 +74,7 @@ const Payout = () => {
           <p>R$ {price}</p>
         </span>
         <span>
-          <p onClick={handleRemoveFromCart}>X</p>
+          <img src={Trash} className="trash-icon" onClick={handleRemoveFromCart} />
         </span>
       </div>
     );
@@ -111,7 +112,7 @@ const Payout = () => {
                 />
               ))
             ) : (
-              <p style={{ margin: "0 auto", color: "grey", opacity: 0.3 }}>
+              <p style={{ margin: "0 auto", color: "grey", opacity: 0.3, marginTop: "10px" }}>
                 CARRINHO VAZIO
               </p>
             )}

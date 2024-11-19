@@ -91,6 +91,9 @@
                     border-radius: 13px;
 
                     p {
+                        &:first-child, &:last-child {
+                            font-size: 30px;
+                        }
                       cursor: pointer;
                       user-select: none;
                     }
@@ -248,6 +251,14 @@
         }
     }
 
+}
+
+.trash-icon {
+    width: 30px !important;
+    box-shadow: none !important;
+    height: 30px !important;
+    cursor: pointer !important;
+    border-radius: 0px !important;
 }
 
 @media screen and (max-width: $medium) {
