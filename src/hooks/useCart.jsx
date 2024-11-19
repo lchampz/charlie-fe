@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext } from "react";
+import React, { useState, useContext, createContext, useEffect } from "react";
 import { useToast } from "./useToast";
 
 const CartContext = createContext({
@@ -6,12 +6,22 @@ const CartContext = createContext({
   removeFromCart: (item, qtd = 1) => {},
   addToCart: (item, qtd = 1, toast = true) => {},
   getCounter: () => Number,
-  getSubtotal: () => Number
+  getSubtotal: () => Number,
 });
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  
+  const [cart, setCart] = useState(() => {
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
   const addToast = useToast();
+
+  
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const removeFromCart = (item, qtd = 1) => {
     const product = cart.find((cartItem) => cartItem.PRODUTO_ID === item.PRODUTO_ID);
@@ -35,8 +45,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = (item, qtd = 1, toast = true) => {
-
-    if(!item.estoque || item.estoque.PRODUTO_QTD <= 0) {
+    if (!item.estoque || item.estoque.PRODUTO_QTD <= 0) {
       addToast("Produto sem estoque!", "fail");
       return;
     }
@@ -53,16 +62,16 @@ export const CartProvider = ({ children }) => {
       );
       setCart(updatedCart);
     }
-    if(toast) addToast("Produto inserido com sucesso!", "success");
+    if (toast) addToast("Produto inserido com sucesso!", "success");
   };
 
   const getCounter = () => {
     return cart.reduce((acc, item) => acc + item.qtd, 0);
-  }
+  };
 
   const getSubtotal = () => {
-    return cart.reduce((acc, item) => acc + (item.qtd * item.PRODUTO_PRECO), 0)
-  }
+    return cart.reduce((acc, item) => acc + item.qtd * item.PRODUTO_PRECO, 0);
+  };
 
   return (
     <CartContext.Provider value={{ cart, removeFromCart, addToCart, getCounter, getSubtotal }}>

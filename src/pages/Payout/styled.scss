@@ -59,19 +59,13 @@
                 .wrapper-quantity {
                     display: flex;
                     flex-direction: row;
+                    justify-content: space-between;
                     width: 80px;
                     font-size: 20px;
                     border: none;
                     p {
-                        &:first-child {
-                            font-size: 30px;
-                            cursor: pointer;
-                           
-                        }
-                        &:last-child {
-                            font-size: 30px;
-                            cursor: pointer;
-                        }
+                      cursor: pointer;
+                      user-select: none;
                     }
                 }
 

@@ -24,9 +24,9 @@ const Payout = () => {
           <img src={img} alt={`img ${name}`} />
         </span>
         <span className="wrapper-quantity">
-            <p onClick={handleRemoveOne}>-</p>
+          <p style={qtd === 1 ? {color: "white", cursor: "default"} : {}} onClick={handleRemoveOne}>-</p>
           <p>{qtd}</p>
-          <p onClick={handleAddOne}>+</p>
+          <p style={qtd === storage ? {color: "white", cursor: "default"} : {}} onClick={handleAddOne}>+</p>
         </span>
         <span>
           <p>R$ {price}</p>
