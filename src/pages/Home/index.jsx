@@ -8,7 +8,7 @@ import banner from "../../assets/home.png";
 import delicias from "../../assets/delicias.png";
 import pedaco from "../../assets/pedaco.png";
 
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -16,7 +16,7 @@ import "swiper/css/pagination";
 import "./styled.scss";
 import "./mobile.scss";
 
-import { Autoplay, EffectCoverflow,Navigation, Pagination } from "swiper/modules";
+// import { Autoplay, EffectCoverflow,Navigation, Pagination } from "swiper/modules";
 
 
 const Home = () => {
