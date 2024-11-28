@@ -8,8 +8,16 @@ import banner from "../../assets/home.png";
 import delicias from "../../assets/delicias.png";
 import pedaco from "../../assets/pedaco.png";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 import "./styled.scss";
 import "./mobile.scss";
+
+import { Autoplay, EffectCoverflow,Navigation, Pagination } from "swiper/modules";
+
 
 const Home = () => {
   const { product } = useProduct();
@@ -64,6 +72,47 @@ const Home = () => {
             ))}
           </div>
         </div>
+
+{/* <div className="products-column">
+  <span className="title_products">Conheça nossos produtos</span>
+  <Swiper
+        effect={'coverflow'}
+        grabCursor={true}
+        centeredSlides={true}
+        slidesPerView={'auto'}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        }}
+        pagination={true}
+        modules={[EffectCoverflow, Pagination]}
+        className="mySwiper"
+  >
+    {product.map((item, i) => (
+      <SwiperSlide key={i}>
+        <div className="product-card">
+          <Card
+            key={i}
+            item={item}
+            setState={setQuantity}
+            state={quantity}
+            id={"card-" + item.PRODUTO_ID}
+            click={() =>
+              sendToCart(
+                item.PRODUTO_ID,
+                quantity["card-" + item.PRODUTO_ID]
+              )
+            }
+          />
+        </div>
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div> */}
+
 
         <section className="pedaco">
           <img src={pedaco} alt="foto de uma pedaço de torta" />

@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
     if (!username || !pass) {
       addToast("Insira os campos corretamente!", "fail");
       return;
-    }
+    } 
 
     const response = await login(username, pass);
     if (response) {

@@ -67,7 +67,7 @@ const Modal = ({ item = props, open, close }) => {
                 <div className="modal-img">
                   <img src={img}></img>
                 </div>
-              </div>
+              </div> 
               <div className="modal-desc">
                 <div className="description">
                   <p>Descrição</p>

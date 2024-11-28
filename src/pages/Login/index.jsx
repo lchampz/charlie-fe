@@ -1,19 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 import { useAuth } from "../../hooks/useAuth";
+import { useToast } from "../../hooks/useToast";
+import { useLoading } from "../../hooks/useLoading";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import PageWrapper from "../../components/PageWrapper";
 import AlternativeButton from "../../components/AlternativeButton";
 import BG from "../../assets/bgcolor.png";
 import Logo from "../../assets/logo.png";
-import { useLoading } from "../../hooks/useLoading";
+
 
 import "./styled.scss";
 
 const Login = () => {
   const { handleLogin, handleRegister } = useAuth();
   const { setLoading } = useLoading();
+  const addToast = useToast();
   const [isRegister, setIsRegister] = useState(false);
   const [loginForm, setLoginForm] = useState({
     username: "",
@@ -38,7 +41,7 @@ const Login = () => {
 
   const validateLoginForm = () => {
     if (!loginForm.username || !loginForm.pass) {
-      alert("Por favor, preencha todos os campos.");
+      addToast("Insira os campos corretamente!", "fail");
       return false;
     }
     return true;
