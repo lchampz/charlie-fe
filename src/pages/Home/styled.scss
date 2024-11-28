@@ -244,6 +244,7 @@
   }
 
   .container {
+	width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -254,11 +255,16 @@
       flex-direction: column;
       align-items: center;
       gap: 30px;
-
+	  width: 100%;
+      
       .col-one {
-        text-align: center;
-
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 80%;
         .hint-title {
+			align-self: flex-start;
           font-size: 18px;
           color: #ff6b6b;
           text-transform: uppercase;
@@ -267,7 +273,8 @@
         }
 
         .title {
-          font-size: 32px;
+          font-size: 36px;
+		  align-self: flex-start;
           font-weight: bold;
           color: #333;
           margin-bottom: 40px;
@@ -275,6 +282,9 @@
 
         .depoimento {
           background-color: $light-pink;
+          padding: 30px;
+		 
+		  margin: 10px;
           border-radius: 8px;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
           padding: 20px;
@@ -287,7 +297,6 @@
             display: flex;
             align-items: center;
             margin-bottom: 20px;
-
             .nome-depoimento {
               font-size: 18px;
               font-weight: bold;
@@ -311,8 +320,10 @@
 
           .texto-depoimento {
             font-size: 16px;
+			
             color: #666;
             line-height: 1.5;
+			transition: all 0.3s ease-in-out;
           }
         }
 

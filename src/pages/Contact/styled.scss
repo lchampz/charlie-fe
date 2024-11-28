@@ -1,0 +1,183 @@
+@import "../../scss/variables";
+
+.background{
+  background-image: url(../../assets/backgroud.png);
+  background-size: cover;
+  height: 100vh;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+.card-contato {
+  background-color: $white;
+  padding: 30px;
+  position: relative;   
+  bottom: 50px;
+  border-radius: 20px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+
+
+
+
+  .content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .left-content {
+      max-width: 45%;
+      text-align: left;
+
+      .titulo {
+        font-family: $cursive-font;
+        font-size: 2.2rem;    
+        color: $dark-gray;
+        margin-bottom: 15px;
+        position: relative;
+        bottom: 90px;
+
+      }
+
+      p {
+        font-family: $font-family;
+        color: $dark-gray;
+        line-height: 1.6;
+        font-size: 1rem;     
+      }
+    }
+
+    .form {
+      background-color: $white;
+      padding: 20px;             
+      border-radius: 20px;
+      max-width: 45%;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+
+      h3 {
+        font-family: $font-family;
+        color: $dark-gray;
+        font-size: 1.3rem;     
+        margin-bottom: 15px;
+      }
+
+      label {
+        font-family: $font-family;
+        color: $dark-gray;
+        display: block;
+        margin-bottom: 5px;
+        text-align: left;
+      }
+
+      input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: none;              
+        border-bottom: 1px solid $light-gray; 
+        border-radius: 0;          
+        font-family: $font-family;
+        font-size: 0.9rem;          
+        background: transparent;    
+
+        &:focus {
+          outline: none;            
+          border-bottom: 1px solid $dark-gray; 
+        }
+      }
+
+      textarea {
+        min-height: 80px;      
+        background: transparent;  
+      }
+
+      h6 {
+        font-family: $font-family;
+        color: $light-gray;
+        font-size: 0.8rem;    
+        margin-bottom: 15px;
+      }
+
+      .button {
+        background-color: $pink;
+        color: white;
+        border: 2px solid $dark-pink;
+        padding: 7px;
+        width: 36%;           
+        border-radius: 80px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        position: relative;
+        left: 181px;
+        bottom: 8px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      
+        &:hover {
+          background-color: #f5f0f0;
+          color: $dark-pink;
+          border: 2px solid $pink;
+        }
+      }
+      
+      
+    }
+  }
+}
+
+.contact-cards {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;           
+  width: 100%;
+  
+
+  .contact-card {
+    width: 15%;
+    height: 180px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;   
+
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 10px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .label {
+      font-family: $font-family;
+      font-size: 1rem;
+      color: $dark-gray;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .info {
+      font-family: $font-family;
+      color: $light-gray;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+}

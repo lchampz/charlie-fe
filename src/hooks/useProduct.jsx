@@ -6,7 +6,6 @@ import {
   useCallback,
 } from "react";
 import { ProductService } from "../services/Product";
-import { useAuth } from "./useAuth";
 
 const ProductContext = createContext({
   product: [],
@@ -19,10 +18,9 @@ const ProductContext = createContext({
 export const ProductProvider = ({ children }) => {
   const [product, setProduct] = useState([]);
   const [ searchedProducts, setSearchedProducts ] = useState([]);
-  const { token } = useAuth();
 
   const fetchProducts = useCallback(async () => {
-    const service = ProductService(token);
+    const service = ProductService();
 
     try {
       const response = await service.GetActiveProducts();
@@ -35,7 +33,11 @@ export const ProductProvider = ({ children }) => {
     } catch (err) {
       console.error("Erro ao buscar produtos:", err);
     }
-  }, [token]);
+  }, []);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [])
 
   const searchProducts = (name) => {
     const filteredProducts = product.filter(item =>
@@ -43,13 +45,6 @@ export const ProductProvider = ({ children }) => {
     );
     setSearchedProducts(filteredProducts);
   };
-  
-
-  useEffect(() => {
-    if (token) {
-      fetchProducts();
-    }
-  }, [token]);
 
   return (
     <ProductContext.Provider value={{ product, fetchProducts, searchedProducts, searchProducts}}>
