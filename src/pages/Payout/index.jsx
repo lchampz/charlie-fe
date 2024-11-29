@@ -7,7 +7,7 @@ import { PaymentService } from "../../services/Payment";
 import { useToast } from "../../hooks/useToast";
 
 import Trash from '../../assets/Lixeira.png'
-import Exit from '../../assets/Exit.svg'
+import Exit from '../../assets/exit.svg'
 
 import "./styled.scss";
 
