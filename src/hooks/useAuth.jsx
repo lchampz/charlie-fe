@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
         setToken(storageToken);
       }
     }
-    setTokenLoaded(true); // Defina como verdadeiro após a tentativa de carregar o token
+    setTokenLoaded(true);
   }, []);
 
   useEffect(() => {

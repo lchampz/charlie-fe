@@ -14,6 +14,33 @@ export const UserService = () => {
         setLoading(false);
       }
     },
+    UpdateAddress: async (body, token) => {
+      try {
+        setLoading(true);
+        const response = await api.POST("/endereco/update", body, {}, token);
+        return response;
+      } finally {
+        setLoading(false);
+      }
+    },
+    CreateAddress: async (body, token) => {
+      try {
+        setLoading(true);
+        const response = await api.POST("/endereco", body, {}, token);
+        return response;
+      } finally {
+        setLoading(false);
+      }
+    },
+    DeleteAddress: async (id, token) => {
+      try {
+        setLoading(true);
+        const response = await api.DELETE(`/endereco/${id}`, null, {}, token);
+        return response;
+      } finally {
+        setLoading(false);
+      }
+    },
     GetAddress: async (token) => {
       try {
         setLoading(true);

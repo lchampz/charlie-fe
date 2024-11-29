@@ -46,6 +46,7 @@ const UserPage = () => {
     pass: "",
   });
   const [newAddress, setNewAddress] = useState({
+    id: "",
     name: null,
     address: "",
     number: "",
@@ -53,31 +54,35 @@ const UserPage = () => {
     cep: "",
     city: "",
     state: "",
+    userId: user.id
   });
   const [address, setAddress] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [order, setOrder] = useState(null);
+  const [modalOrder, setModalOrder] = useState(false);
   const navigate = useNavigate();
 
   const service = UserService();
 
+  const getData = async () => {
+    const userResponse = await getUserInfo();
+    setUserInfo({
+      id: userResponse.user.USUARIO_ID,
+      name: userResponse.user.USUARIO_NOME,
+      cpf: userResponse.user.USUARIO_CPF,
+      email: userResponse.user.USUARIO_EMAIL,
+      pass: userResponse.user.USUARIO_SENHA,
+    });
+
+    const addressResponse = await service.GetAddress(token);
+    setAddress(addressResponse);
+
+    const ordersResponse = await service.GetOrders(token);
+    setOrders(ordersResponse.data);
+    console.log(ordersResponse.data);
+  };
+
   useEffect(() => {
-    const getData = async () => {
-      const userResponse = await getUserInfo();
-      setUserInfo({
-        id: userResponse.user.USUARIO_ID,
-        name: userResponse.user.USUARIO_NOME,
-        cpf: userResponse.user.USUARIO_CPF,
-        email: userResponse.user.USUARIO_EMAIL,
-        pass: userResponse.user.USUARIO_SENHA,
-      });
-
-      const addressResponse = await service.GetAddress(token);
-      setAddress(addressResponse);
-
-      const ordersResponse = await service.GetOrders(token);
-      setOrders(ordersResponse.data);
-    };
-
     getData();
   }, []);
 
@@ -89,15 +94,103 @@ const UserPage = () => {
     } catch (err) {
       addToast("Erro ao atualizar informações do usuário", "fail");
     }
+    getData();
   };
+
+  const updateAddress = async () => {
+    try {
+      const response = await service.UpdateAddress(newAddress, token);
+      if (response)
+        addToast(response.data, response.error ? "fail" : "success");
+    } catch (err) {
+      addToast("Erro ao atualizar informações do endereço", "fail");
+    }
+    getData();
+  };
+
+  const registerNewAddress = async () => {
+    try {
+      const response = await service.CreateAddress(newAddress, token);
+      if (response)
+        addToast(response.data, response.error ? "fail" : "success");
+    } catch (err) {
+      addToast("Erro ao cadastrar novo endereço", "fail");
+    }
+    getData();
+  }
+
+  const deleteAddress = async () => {
+    try {
+      const response = await service.DeleteAddress(newAddress.id, token);
+      if (response)
+        addToast(response.data, response.error ? "fail" : "success");
+    } catch (err) {
+      addToast("Erro ao deletar endereço", "fail");
+    }
+
+    getData();
+  }
 
   const handleChangePage = (id) => {
     setPage(id);
   };
 
+  const handleSetOrder = (order) => {
+    setOrder(order);
+    setModalOrder(true);
+  }
+
   const logoutAndRedirect = () => {
     handleLogout();
     navigate("/home");
+  };
+
+  const ModalOrder = () => {
+    console.log(order.items)
+    return (
+      <div
+        className="background-loading"
+        style={{ backgroundColor: "rgba(0, 0, 0, .45)" }}
+      >
+        <div className="modal-content">
+          <div className="modal-header">
+            <h2>Pedido</h2>
+            <span style={{cursor: "pointer"}} onClick={() => setModalOrder(false)}>X</span>
+          </div>
+          <div className="modal-body">
+            <div className="modal-order-content">
+              
+                
+                <span style={{ display: "flex", gap: "5px"}}>
+                  <label>Endereço: </label>
+                  <p>{order.order.endereco.ENDERECO_NOME}</p>
+                </span>
+              
+              <div className="address-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Produto</th>
+                      <th>Quantidade</th>
+                      <th>Preço</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {order.items.map((item, i) => (
+                      <tr key={i}>
+                        <td>{item.produto.PRODUTO_NOME}</td>
+                        <td>{item.ITEM_QTD}</td>
+                        <td>{item.ITEM_PRECO}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   const PageAddress = () => {
@@ -106,6 +199,8 @@ const UserPage = () => {
         const findAddress = address.find((item) => item.ENDERECO_ID === id);
 
         setNewAddress({
+          id: findAddress.ENDERECO_ID,
+          userId: findAddress.USUARIO_ID,
           name: findAddress.ENDERECO_NOME,
           address: findAddress.ENDERECO_LOGRADOURO,
           number: findAddress.ENDERECO_NUMERO,
@@ -127,6 +222,7 @@ const UserPage = () => {
 
     const cleanUp = () => {
       setNewAddress({
+        id: "",
         name: "",
         address: "",
         number: "",
@@ -157,10 +253,21 @@ const UserPage = () => {
   const PageOrders = () => {
     const renderOrders = () => {
       return orders.map((item, i) => (
-        <tr key={i}>
+        <tr key={i} onClick={() => handleSetOrder(item)}>
           <td>{item.order.PEDIDO_ID}</td>
           <td>{item.order.endereco.ENDERECO_NOME}</td>
-          <td><p style={{color: "white", backgroundColor: "#4E65BF", padding: '5px', borderRadius: '10px'}}>{item.order.status.STATUS_DESC}</p></td>
+          <td>
+            <p
+              style={{
+                color: "white",
+                backgroundColor: "#4E65BF",
+                padding: "5px",
+                borderRadius: "10px",
+              }}
+            >
+              {item.order.status.STATUS_DESC}
+            </p>
+          </td>
           <td>{item.order.PEDIDO_DATA}</td>
         </tr>
       ));
@@ -294,85 +401,85 @@ const UserPage = () => {
         </span>
 
         <span>
-          <label>Email</label>
+          <label>Logradouro</label>
           <Input
             state={newAddress}
             setState={setNewAddress}
             name="address"
             value={newAddress?.address}
-            placeholder={"email..."}
+            placeholder={"logradouro..."}
             width="100%"
             padding={"1rem"}
           />
         </span>
 
         <span>
-          <label>CPF</label>
+          <label>CEP</label>
           <Input
             state={newAddress}
             setState={setNewAddress}
             name="cep"
             value={newAddress?.cep}
-            placeholder={"CPF..."}
+            placeholder={"CEP..."}
             width="100%"
             padding={"1rem"}
           />
         </span>
 
         <span>
-          <label>Senha</label>
+          <label>Cidade</label>
           <Input
             state={newAddress}
             setState={setNewAddress}
             name="city"
             value={newAddress?.city}
-            placeholder={"senha..."}
+            placeholder={"cidade..."}
             width="100%"
             padding={"1rem"}
           />
         </span>
 
         <span>
-          <label>Senha</label>
+          <label>Complemento</label>
           <Input
             state={newAddress}
             setState={setNewAddress}
             name="complement"
             value={newAddress?.complement}
-            placeholder={"senha..."}
+            placeholder={"complemento..."}
             width="100%"
             padding={"1rem"}
           />
         </span>
 
         <span>
-          <label>Senha</label>
+          <label>Número</label>
           <Input
             state={newAddress}
             setState={setNewAddress}
             name="number"
             value={newAddress?.number}
-            placeholder={"senha..."}
+            placeholder={"número..."}
             width="100%"
             padding={"1rem"}
           />
         </span>
 
         <span>
-          <label>Senha</label>
+          <label>Estado</label>
           <Input
             state={newAddress}
             setState={setNewAddress}
             name="state"
             value={newAddress?.state}
-            placeholder={"senha..."}
+            placeholder={"estado..."}
             width="100%"
             padding={"1rem"}
           />
         </span>
         <section>
-          <Button click={updateUser} placeholder={"Excluir"} />
-          <Button click={updateUser} placeholder={"Atualizar Informações"} />
+          <Button click={deleteAddress} placeholder={"Excluir"} />
+          <Button click={newAddress.id == "" || !newAddress.id ? registerNewAddress : updateAddress} placeholder={newAddress.id == "" || !newAddress.id ? "Adicionar Endereço" :"Atualizar Informações"} />
         </section>
       </div>
     );
@@ -422,6 +529,7 @@ const UserPage = () => {
         </div>
       </div>
       {page === 2 && newAddress.name !== null && <AddressRegister />}
+      {modalOrder && ModalOrder(order)}
     </div>
   );
 };

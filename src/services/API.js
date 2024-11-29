@@ -37,7 +37,7 @@ class API {
     }
   }
 
-  GET(route, body=null, headers = {}, auth = "teste") {
+  GET(route, body=null, headers = {}, auth = "") {
     return this.request(route, "GET", body, headers, auth);
   }
 
