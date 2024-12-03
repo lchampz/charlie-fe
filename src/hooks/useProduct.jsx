@@ -12,12 +12,15 @@ const ProductContext = createContext({
   searchedProducts: [],
   searchProducts: (name) => {},
   fetchProducts: () => {},
+  filterByCategoryArray: (category) => {},
+  loadMoreProducts: () => {},
 });
 
 // eslint-disable-next-line react/prop-types
 export const ProductProvider = ({ children }) => {
-  const [product, setProduct] = useState([]);
+  const [ product, setProduct ] = useState([]);
   const [ searchedProducts, setSearchedProducts ] = useState([]);
+  const [ counter, setCounter] = useState(20);
 
   const fetchProducts = useCallback(async () => {
     const service = ProductService();
@@ -26,7 +29,8 @@ export const ProductProvider = ({ children }) => {
       const response = await service.GetActiveProducts();
       if (response) {
         setProduct(response);
-        setSearchedProducts(response);
+        setSearchedProducts(response.slice(0, counter));
+        setCounter(response.length);
       } else {
         console.error("[ERROR] " + response);
       }
@@ -39,6 +43,11 @@ export const ProductProvider = ({ children }) => {
     fetchProducts();
   }, [])
 
+  const loadMoreProducts = () => {
+    const additionalProducts = product.slice(searchedProducts.length, searchedProducts.length + 20);
+    setSearchedProducts(prevProducts => [...prevProducts, ...additionalProducts]);
+  }
+
   const searchProducts = (name) => {
     const filteredProducts = product.filter(item =>
       item.PRODUTO_NOME.toLowerCase().includes(name.toLowerCase())
@@ -46,8 +55,20 @@ export const ProductProvider = ({ children }) => {
     setSearchedProducts(filteredProducts);
   };
 
+  const filterByCategoryArray = (categories) => {
+    if(categories.length === 0) {
+      return setSearchedProducts(product);
+    };
+    const filteredProducts = product.filter(item =>
+      categories.some(category =>
+        item.categoria.CATEGORIA_NOME.toLowerCase().includes(category.toLowerCase())
+      )
+    );
+    setSearchedProducts(filteredProducts);
+  };
+
   return (
-    <ProductContext.Provider value={{ product, fetchProducts, searchedProducts, searchProducts}}>
+    <ProductContext.Provider value={{ product, fetchProducts, searchedProducts, searchProducts, filterByCategoryArray, loadMoreProducts}}>
       {children}
     </ProductContext.Provider>
   );

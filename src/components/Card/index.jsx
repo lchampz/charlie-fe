@@ -83,7 +83,7 @@ const Card = ({
   };
   return (
     <>
-      <div className="off">
+      
       <div className="card" style={item.estoque <= 0 || !item.estoque ? {backgroundColor: "background-color: rgba(0, 0, 0, 0.3)", opacity: "0.5", cursor: "not-allowed"} : {}}>
           <span
             style={{
@@ -129,7 +129,7 @@ const Card = ({
             <Button click={item.estoque > 0 ||item.estoque  || item.estoque !== "0"? click : null} placeholder={title} />
           </div>
         </div>
-      </div>
+     
       <Modal item={item} open={modal} close={handleOpenCloseModal} />
     </>
   );

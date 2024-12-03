@@ -7,6 +7,7 @@ import UserPage from "./pages/UserPage";
 import Payout from "./pages/Payout";
 import Contact from "./pages/Contact";
 import QuemSomos from "./pages/QuemSomos";
+import About from "./pages/About";
 import { useAuth } from "./hooks/useAuth";
 
 
@@ -27,6 +28,7 @@ const AppRoutes = () => {
     { path: "/", name: "Default", element: <Navigate to="/home" replace /> },
     { path: "/login", name: "Login", element: <GuestRoute element={<Login />} /> },
     { path: "/home", name: "Home", element: <Home /> },
+    // { path: "/about", name: "Home", element: <About /> },
     { path: "/contact", name: "Contato", element: <Contact /> },
     { path: "/quemsomos", name: "Quem Somos", element: <QuemSomos /> },
     // { path: "/quem-somos", name: "Quem Somos", element: <Quem-Somos /> },

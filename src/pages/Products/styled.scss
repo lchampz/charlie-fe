@@ -1,29 +1,95 @@
 @import "../../scss/variables";
 
 #wrapper-products {
-    display: flex;
-    min-height: 100vh;
-    height: 100%;
-	background-image: url(../../assets/backgroud.png);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-image: url(../../assets/backgroud.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-    .column {
-        width: 100%;
-        // height: 100%;
-        display: flex;
-        align-items: stretch;
-        justify-content: center;
-        flex-direction: row;
-        flex-wrap: wrap;
-        flex: 1;
+  .first-column {
+    width: 100%;
+    // height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+		.load-more {
+      width: 300px;
+      padding: 1rem;
+      margin: 1rem;
+      text-align: center;
+      background-color: $pink;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $dark-pink;
+      }
     }
 
-    // .column:first-child {
-    //     width: 40%;
-    //     height: 100%;
-    //     background-color: $dark-pink;
-    // }
-}
+    .card-wrapper {
+      display: flex;
+      gap: 30px;
+      align-items: stretch;
+      justify-content: center;
 
+      flex-wrap: wrap;
+      flex: 1;
+      padding: 20px 0px;
+    }
+  }
+
+  .column:first-child {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 300px;
+    background-color: #ffffff80;
+		
+    .title_categories {
+      font-size: 30px;
+			color: $brown;
+			font-weight: bold;
+			font-family: $font-family;
+			margin-top: 20px;
+			margin-bottom: -20px;
+    }
+
+    .categories {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      .category-container {
+        display: flex;
+        align-items: center;
+        font-variant: small-caps;
+        font-size: larger;
+        gap: 10px;
+				font-family: poppins;
+				font-size: 1rem;
+      }
+
+      .category-input {
+        width: 20px;
+        height: 20px;
+        border: 2px solid $brown;
+				border-radius: 10px;
+        cursor: pointer;
+
+        &:checked {
+          background-color: $light-brown;
+        }
+      }
+    }
+  }
+}
