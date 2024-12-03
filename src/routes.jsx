@@ -6,7 +6,9 @@ import Products from "./pages/Products";
 import UserPage from "./pages/UserPage";
 import Payout from "./pages/Payout";
 import Contact from "./pages/Contact";
+import QuemSomos from "./pages/QuemSomos";
 import { useAuth } from "./hooks/useAuth";
+
 
 const ProtectedRoute = ({ element }) => {
   const { token, user } = useAuth();
@@ -26,6 +28,8 @@ const AppRoutes = () => {
     { path: "/login", name: "Login", element: <GuestRoute element={<Login />} /> },
     { path: "/home", name: "Home", element: <Home /> },
     { path: "/contact", name: "Contato", element: <Contact /> },
+    { path: "/quemsomos", name: "Quem Somos", element: <QuemSomos /> },
+    // { path: "/quem-somos", name: "Quem Somos", element: <Quem-Somos /> },
     { path: "/products", name: "Produtos", element: <Products /> },
     { path: "/user", name: "Usuario", element: <ProtectedRoute element={<UserPage />} /> },
     { path: "/payout", name: "Pagamento", element: <ProtectedRoute element={<Payout />} /> },

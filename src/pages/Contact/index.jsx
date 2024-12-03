@@ -2,10 +2,8 @@ import { useState } from 'react';
 import './styled.scss';
 import emailjs from '@emailjs/browser';
 import Modal from '../../components/FormModal';
-import Whatsapp from '../../assets/whatsApp.png';
-import Endereco from '../../assets/pin.png';
-import Telefone from '../../assets/tel.png';
 import Menu from '../../components/Menu';
+import Footer from '../../components/Footer';
 
 export default function Contact() {
   const [name, setName] = useState('');
@@ -129,6 +127,8 @@ export default function Contact() {
       
       </div>
       <Modal isOpen={isOpen} setModalOpen={setIsOpen} />
+
+      <Footer/>
     </>
   );
 }

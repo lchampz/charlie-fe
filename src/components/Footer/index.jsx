@@ -10,10 +10,10 @@ export default function Footer() {
 		<section className="informations">
 			<div className="principal">
 				<h3>Principal</h3>
+				<a href="/home">Home</a>
 				<a href="/products">Produtos</a>
-				<a href="">Quem Somos</a>
-				<a href="">Carrinho</a>
-				<a href="">Contato</a>
+				<a href="/quemsomos">Quem Somos</a>
+				<a href="/contact">Contato</a>
 			</div>
 
 			<div className="contato">

@@ -7,6 +7,7 @@ import { useProduct } from "../../hooks/useProduct";
 import PageWrapper from '../../components/PageWrapper'
 
 import "./styled.scss"
+import Footer from "../../components/Footer";
 
 
 const Products = () => {
@@ -31,6 +32,8 @@ const Products = () => {
           )) : <div>Nenhum produto encontrado!</div>}
         </div>
       </PageWrapper>
+
+      <Footer/>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { useProduct } from "../../hooks/useProduct";
 import { useCart } from "../../hooks/useCart";
 import Menu from "../../components/Menu";
@@ -8,7 +9,8 @@ import banner from "../../assets/home.png";
 import delicias from "../../assets/delicias.png";
 import pedaco from "../../assets/pedaco.png";
 
-// import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, A11y } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -16,8 +18,28 @@ import "swiper/css/pagination";
 import "./styled.scss";
 import "./mobile.scss";
 
-// import { Autoplay, EffectCoverflow,Navigation, Pagination } from "swiper/modules";
-
+const breakpoints = {
+  320: {
+    slidesPerView: 1,
+    spaceBetween: 20,
+  },
+  600: {
+    slidesPerView: 2,
+    spaceBetween: 30,
+  },
+  700: {
+    slidesPerView: 3,
+    spaceBetween: 40,
+  },
+  1000: {
+    slidesPerView: 4,
+    spaceBetween: 30,
+  },
+  1200: {
+    slidesPerView: 4,
+    spaceBetween: 50,
+  },
+};
 
 const Home = () => {
   const { searchedProducts, product } = useProduct();
@@ -27,7 +49,7 @@ const Home = () => {
 
   const sendToCart = (id, qtd) => {
     const findedItem = product.find((item) => id === item.PRODUTO_ID);
-    if(findedItem) addToCart(findedItem, qtd);
+    if (findedItem) addToCart(findedItem, qtd);
   };
 
   const abrirDepoimento = (depoimento) => {
@@ -40,21 +62,24 @@ const Home = () => {
       nome: "Pedro Marques",
       nota: "4.5",
       estrelas: "⭐⭐⭐⭐☆",
-      texto: "Muito bom, recomendo demais! Comida muito bem feita pela confeiteira, atendimento dentro dos parâmetros e boa comunicação com o cliente.",
+      texto:
+        "Muito bom, recomendo demais! Comida muito bem feita pela confeiteira, atendimento dentro dos parâmetros e boa comunicação com o cliente.",
     },
     {
       id: 2,
       nome: "Ana Beatriz",
       nota: "5.0",
       estrelas: "⭐⭐⭐⭐⭐",
-      texto: "Simplesmente apaixonada! Os doces são maravilhosos, e dá pra sentir o cuidado com cada detalhe. Desde a embalagem até o sabor, tudo é impecável. Recomendo muito, principalmente os brigadeiros gourmet, que são de outro nível!",
+      texto:
+        "Simplesmente apaixonada! Os doces são maravilhosos, e dá pra sentir o cuidado com cada detalhe. Desde a embalagem até o sabor, tudo é impecável. Recomendo muito, principalmente os brigadeiros gourmet, que são de outro nível!",
     },
     {
       id: 3,
       nome: "Lucas Silva",
       nota: "4.0",
       estrelas: "⭐⭐⭐⭐☆",
-      texto: "Nunca pensei que encontraria doces tão bem feitos. A qualidade é excelente, e o sabor é inesquecível! Comprei para uma festa e foi um sucesso, todos queriam saber onde eu tinha encomendado. Atendimento rápido e atencioso, com certeza virei cliente fiel.",
+      texto:
+        "Nunca pensei que encontraria doces tão bem feitos. A qualidade é excelente, e o sabor é inesquecível! Comprei para uma festa e foi um sucesso, todos queriam saber onde eu tinha encomendado. Atendimento rápido e atencioso, com certeza virei cliente fiel.",
     },
   ];
 
@@ -62,7 +87,9 @@ const Home = () => {
     <div className="depoimento" key={depoimento.id}>
       <div className="container-dados-depoimento">
         <div>
-          <p className="nome-depoimento"><b>{depoimento.nome}</b></p>
+          <p className="nome-depoimento">
+            <b>{depoimento.nome}</b>
+          </p>
           <p className="nota-depoimento">
             <span>{depoimento.estrelas}</span> <span>{depoimento.nota}</span>
           </p>
@@ -94,71 +121,47 @@ const Home = () => {
         <div className="products-column">
           <span className="title_products">Conheça nossos produtos</span>
           <div className="card-wrapper">
-          {searchedProducts.map((item, i) => (
-              <Card
-                key={i}
-                item={item}
-                setState={setQuantity}
-                state={quantity}
-                id={"card-" + item.PRODUTO_ID}
-                click={() =>
-                  sendToCart(
-                    item.PRODUTO_ID,
-                    quantity["card-" + item.PRODUTO_ID]
-                  )
-                }
-              />
-            ))}
+            <Swiper
+              modules={[Navigation, Pagination, A11y]}
+              navigation
+              breakpoints={breakpoints}
+              onSwiper={(swiper) => console.log(swiper)}
+              onSlideChange={() => console.log("slide change")}
+            >
+              {searchedProducts.map((item, i) => (
+                <SwiperSlide className="swiper" key={i}>
+                  <Card
+                    item={item}
+                    setState={setQuantity}
+                    state={quantity}
+                    id={"card-" + item.PRODUTO_ID}
+                    click={() =>
+                      sendToCart(
+                        item.PRODUTO_ID,
+                        quantity["card-" + item.PRODUTO_ID]
+                      )
+                    }
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            
           </div>
-        </div>
 
-{/* <div className="products-column">
-  <span className="title_products">Conheça nossos produtos</span>
-  <Swiper
-        effect={'coverflow'}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={'auto'}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        pagination={true}
-        modules={[EffectCoverflow, Pagination]}
-        className="mySwiper"
-  >
-    {product.map((item, i) => (
-      <SwiperSlide key={i}>
-        <div className="product-card">
-          <Card
-            key={i}
-            item={item}
-            setState={setQuantity}
-            state={quantity}
-            id={"card-" + item.PRODUTO_ID}
-            click={() =>
-              sendToCart(
-                item.PRODUTO_ID,
-                quantity["card-" + item.PRODUTO_ID]
-              )
-            }
-          />
+          <a className="ver_mais" href="/products">
+            Todos os Produtos
+          </a>
         </div>
-      </SwiperSlide>
-    ))}
-  </Swiper>
-</div> */}
-
 
         <section className="pedaco">
           <img src={pedaco} alt="foto de uma pedaço de torta" />
           <div className="texto_pedaco">
             <h2>Vai um pouquinho aí?</h2>
             <p>
-              Delicie-se com as criações mais irresistíveis! Nossos doces são feitos com ingredientes selecionados e carinho em cada detalhe. Seja para adoçar seu dia ou transformar momentos especiais, cada mordida é uma explosão de sabor!
+              Delicie-se com as criações mais irresistíveis! Nossos doces são
+              feitos com ingredientes selecionados e carinho em cada detalhe.
+              Seja para adoçar seu dia ou transformar momentos especiais, cada
+              mordida é uma explosão de sabor!
             </p>
           </div>
         </section>
@@ -172,10 +175,16 @@ const Home = () => {
           <div className="container">
             <div className="row">
               <div className="col-one">
-                <span className="hint-title"><b>Depoimentos</b></span>
-                <h1 className="title"><b>O que dizem sobre nós?</b></h1>
+                <span className="hint-title">
+                  <b>Depoimentos</b>
+                </span>
+                <h1 className="title">
+                  <b>O que dizem sobre nós?</b>
+                </h1>
                 <div>
-                  {renderDepoimento(depoimentos.find(d => d.id === activeDepoimento))}
+                  {renderDepoimento(
+                    depoimentos.find((d) => d.id === activeDepoimento)
+                  )}
                 </div>
                 <div className="btn-container">
                   {depoimentos.map((depo) => (

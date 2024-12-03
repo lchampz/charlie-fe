@@ -32,10 +32,31 @@ const Payout = () => {
     fetchData();
   }, []);
 
+  // const pay = async () => {
+  //   const response = await SPay.Pay({cart: cart, address: selectedAddress}, token);
+  //   addToast(response.data, response.error ? "fail" : "success");
+  // }
+
   const pay = async () => {
-    const response = await SPay.Pay({cart: cart, address: selectedAddress}, token);
-    addToast(response.data, response.error ? "fail" : "success");
-  }
+    // Verifica se o carrinho esta vazio
+    if (cart.length === 0) {
+      addToast("Seu carrinho está vazio.", "fail");
+      return; 
+    }
+
+    try {
+      const response = await SPay.Pay({ cart: cart, address: selectedAddress }, token);
+      if (response.error) {
+        addToast(response.data, "fail");
+      } else {
+        // se der certo, vai para a página user
+        addToast(response.data, "success");
+        navigate("/user");
+      }
+    } catch (error) {
+      addToast("Erro ao processar o pagamento.", "fail");
+    }
+  };
 
   const handleChangeAddress = (e) => {
     if (selectedAddress !== e.target.value) {
@@ -87,17 +108,16 @@ const Payout = () => {
           <span>
             <div className="exit" onClick={() => navigate("/")}>
               <img src={Exit} alt="sair" />
-         
             </div>
             <p className="title">Carrinho de Compras</p>
           </span>
 
-          <div className="header">
+          {/* <div className="header">
             <p>Produto</p>
             <p>Quantidade</p>
             <p>Preço Total</p>
-            <p style={{ color: "white" }}>Excluir</p>
-          </div>
+            <p>Excluir</p>
+          </div> */}
           <div className="wrapper-items">
             {cart.length > 0 ? (
               cart.map((item) => (

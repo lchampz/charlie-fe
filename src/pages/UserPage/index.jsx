@@ -145,6 +145,10 @@ const UserPage = () => {
     navigate("/home");
   };
 
+  const backhome = () => {
+    navigate("/home");
+  };
+
   const ModalOrder = () => {
     console.log(order.items)
     return (
@@ -300,7 +304,7 @@ const UserPage = () => {
             setState={setUserInfo}
             name="name"
             value={userInfo?.name}
-            placeholder={"nome..."}
+            placeholder={"Nome..."}
             width="100%"
             padding={"1rem"}
           />
@@ -313,7 +317,7 @@ const UserPage = () => {
             setState={setUserInfo}
             name="email"
             value={userInfo?.email}
-            placeholder={"email..."}
+            placeholder={"E-mail..."}
             width="100%"
             padding={"1rem"}
           />
@@ -339,7 +343,7 @@ const UserPage = () => {
             setState={setUserInfo}
             name="pass"
             value={userInfo?.pass}
-            placeholder={"senha..."}
+            placeholder={"Senha..."}
             width="100%"
             padding={"1rem"}
           />
@@ -394,7 +398,7 @@ const UserPage = () => {
             setState={setNewAddress}
             name="name"
             value={newAddress?.name}
-            placeholder={"nome..."}
+            placeholder={"Casa"}
             width="100%"
             padding={"1rem"}
           />
@@ -407,7 +411,7 @@ const UserPage = () => {
             setState={setNewAddress}
             name="address"
             value={newAddress?.address}
-            placeholder={"logradouro..."}
+            placeholder={"R. Vinícius de Moraes"}
             width="100%"
             padding={"1rem"}
           />
@@ -420,7 +424,7 @@ const UserPage = () => {
             setState={setNewAddress}
             name="cep"
             value={newAddress?.cep}
-            placeholder={"CEP..."}
+            placeholder={"00000000"}
             width="100%"
             padding={"1rem"}
           />
@@ -433,7 +437,7 @@ const UserPage = () => {
             setState={setNewAddress}
             name="city"
             value={newAddress?.city}
-            placeholder={"cidade..."}
+            placeholder={"São Paulo"}
             width="100%"
             padding={"1rem"}
           />
@@ -446,7 +450,7 @@ const UserPage = () => {
             setState={setNewAddress}
             name="complement"
             value={newAddress?.complement}
-            placeholder={"complemento..."}
+            placeholder={"Ap 2"}
             width="100%"
             padding={"1rem"}
           />
@@ -459,20 +463,20 @@ const UserPage = () => {
             setState={setNewAddress}
             name="number"
             value={newAddress?.number}
-            placeholder={"número..."}
+            placeholder={"20"}
             width="100%"
             padding={"1rem"}
           />
         </span>
 
         <span>
-          <label>Estado</label>
+          <label>UF</label>
           <Input
             state={newAddress}
             setState={setNewAddress}
             name="state"
             value={newAddress?.state}
-            placeholder={"estado..."}
+            placeholder={"SP"}
             width="100%"
             padding={"1rem"}
           />
@@ -509,11 +513,16 @@ const UserPage = () => {
             </div>
             <div className="exit" onClick={logoutAndRedirect}>
               <img src={Exit} alt="sair" />
-              <p> Sair</p>
+              <p> Deslogar</p>
+            </div>
+
+            <div className="exit" onClick={backhome}>
+              <img src={Exit} alt="sair" />
+              <p> Voltar para Home</p>
             </div>
           </div>
-          <div className="row">
-            <img src={Logo} alt="" />
+          <div className="row" onClick={backhome}>
+            <img src={Logo} alt="página inicial" />
           </div>
         </div>
         <div className="content-user-page">

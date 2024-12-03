@@ -88,7 +88,7 @@
 .content h4 {
   font-size: 1.7em;
   margin-bottom: 20px;
-  color: $dark-gray;
+  color: $brown;
   max-width: 600px;
   position: relative;
   font-family: $cursive-font;
@@ -122,20 +122,20 @@
   display: inline-block;
   margin: 10px 10px;
   text-decoration: none;
-  background: #49445b;
+  background: $brown;
   color: #fff;
   font-weight: 500;
   padding: 10px 25px;
   border-radius: 10px;
   transition: all 0.3s ease;
-  border: 2px solid #49445b;
+  border: 2px solid $brown;
   font-family: $font-family;
 }
 
 .content .btns a:hover {
-  background: #f2dea0;
-  color: #49445b;
-  border: 2px solid #f2dea0;
+  background: $yellow;
+  color: $brown;
+  border: 2px solid $yellow;
 }
 
 @media (max-width: 1200px) {

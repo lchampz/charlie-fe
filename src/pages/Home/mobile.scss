@@ -30,13 +30,13 @@
     }
   
     #button_banner {
-      background-color: $dark-gray;
+      background-color: $brown;
       color: #fff;
-      padding: 20px;
+      padding: 15px;
       text-decoration: none;
       border-radius: 10px;
       font-size: 20px;
-      width: 30vh;
+      width: 35vh;
       text-align: center;
       transition: all 0.3s ease-in-out;
 
@@ -101,7 +101,7 @@
       font-size: 40px;
       text-align: center;
       font-family: $font-family;
-      color: $dark-gray;
+      color: $brown;
       padding: 20px 0;
     }
   }
@@ -109,6 +109,13 @@
   .title_products {
     font-family: $cursive-font !important;
     margin: 3.0rem 0;
+    text-align: center;
   }
-
+  
+  .swiper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
 }

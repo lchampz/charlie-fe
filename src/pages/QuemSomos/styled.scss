@@ -1,0 +1,74 @@
+@import "../../scss/variables";
+
+.container_quemsomos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-image: url(../../assets/backgroud.png);
+	background-size: cover;
+	font-family: $font-family;
+
+  .backgroud_quemsomos {
+    max-width: 1200px;
+    width: 100%;
+    padding: 50px;
+    background-color: #ffffffc6;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+
+    h1 {
+      font-size: 2.9rem;
+      color: $brown;
+      margin-bottom: 25px;
+			// font-weight: bold;
+			font-family: $cursive-font;
+    }
+
+    p {
+      font-size: 1.0rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
+			border-bottom: 2px solid $yellow;
+    }
+
+    .imagens {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 400px;
+        height: auto;
+				margin: -70px 0 -90px 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .container_quemsomos {
+    padding: 10px;
+  }
+
+  .backgroud {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .imagens {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  img {
+    width: 120px;
+  }
+}

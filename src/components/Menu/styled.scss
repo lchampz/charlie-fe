@@ -1,10 +1,10 @@
 @import "../../scss/variables";
 
 .menu-wrapper {
-    background-color: $dark-gray;
+    background-color: $brown;
     display: flex; 
     // position: fixed;
-    height: 140px;
+    height: 150px;
     width: 100%;
     flex-direction: column;
     // padding: 1.5rem;
@@ -24,6 +24,7 @@
         align-items: center;
         position: relative;
         z-index: 1;
+        margin-top: 20px;
 
         .counter {
             font-family: $font-family;

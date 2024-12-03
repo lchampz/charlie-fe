@@ -21,6 +21,7 @@ const Menu = () => {
   const navigate = useNavigate();
   const menuOptions = [
     { name: "Home", link: "home" },
+    { name: "Quem Somos", link: "quemsomos" },
     { name: "Produtos", link: "products" },
     { name: "Contato", link: "contact" },
   ];
