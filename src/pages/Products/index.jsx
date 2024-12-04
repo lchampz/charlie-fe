@@ -82,6 +82,7 @@ const Products = () => {
                   setState={setQuantity}
                   state={quantity}
                   id={"card-" + item.PRODUTO_ID}
+                  showModal
                   click={() =>
                     sendToCart(
                       item.PRODUTO_ID,

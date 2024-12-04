@@ -34,6 +34,7 @@ const Card = ({
   setState,
   state,
   id,
+  showModal,
 }) => {
   const [modal, setModal] = useState(false);
   const addToast = useToast();
@@ -83,54 +84,74 @@ const Card = ({
   };
   return (
     <>
-      
-      <div className="card" style={item.estoque <= 0 || !item.estoque ? {backgroundColor: "background-color: rgba(0, 0, 0, 0.3)", opacity: "0.5", cursor: "not-allowed"} : {}}>
-          <span
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-            }}
-            onClick={item.estoque > 0 || item.estoque ? handleOpenCloseModal : null}
-          >
-            <div className="card-img">
-              {item.PRODUTO_DESCONTO && item.PRODUTO_DESCONTO !== "0.00" ? (
-                <div className="discount-percentage">
-                  {(item.PRODUTO_PRECO / item.PRODUTO_DESCONTO).toFixed(0)}% off
-                </div>
-              ) : null}
-              {item.imagens &&
-              item.imagens.length > 0 &&
-              item.imagens[0].IMAGEM_URL ? (
-                <img src={item.imagens[0].IMAGEM_URL} alt="imagem produto" />
-              ) : (
-                <img id="no_sweet" src={no_sweet} alt="imagem padrão" />
-              )}
-            </div>
-            <div className="card-info">
-              <p className="card-title">{item.PRODUTO_NOME}</p>
-              {item.PRODUTO_DESCONTO && item.PRODUTO_DESCONTO > 0 && (
-                <p className="old-price">R$ {item.PRODUTO_PRECO}</p>
-              )}
-              <p className="new-price">
-                R${" "}
-                {(
-                  parseFloat(item.PRODUTO_PRECO) -
-                  parseFloat(item.PRODUTO_DESCONTO ?? 0)
-                )
-                  .toPrecision(3)
-                  .replace(".", ",")}
-              </p>
-            </div>
-          </span>
-          <div className="card-btns">
-            {QuantityComponent()}
-            <Button click={item.estoque > 0 ||item.estoque  || item.estoque !== "0"? click : null} placeholder={title} />
+      <div
+        className="card"
+        style={
+          item.estoque <= 0 || !item.estoque
+            ? {
+                backgroundColor: "background-color: rgba(0, 0, 0, 0.3)",
+                opacity: "0.5",
+                cursor: "not-allowed",
+              }
+            : {}
+        }
+      >
+        <span
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+          }}
+          onClick={
+            item.estoque > 0 || item.estoque ? handleOpenCloseModal : null
+          }
+        >
+          <div className="card-img">
+            {item.PRODUTO_DESCONTO && item.PRODUTO_DESCONTO !== "0.00" ? (
+              <div className="discount-percentage">
+                {(item.PRODUTO_PRECO / item.PRODUTO_DESCONTO).toFixed(0)}% off
+              </div>
+            ) : null}
+            {item.imagens &&
+            item.imagens.length > 0 &&
+            item.imagens[0].IMAGEM_URL ? (
+              <img src={item.imagens[0].IMAGEM_URL} alt="imagem produto" />
+            ) : (
+              <img id="no_sweet" src={no_sweet} alt="imagem padrão" />
+            )}
           </div>
+          <div className="card-info">
+            <p className="card-title">{item.PRODUTO_NOME}</p>
+            {item.PRODUTO_DESCONTO && item.PRODUTO_DESCONTO > 0 && (
+              <p className="old-price">R$ {item.PRODUTO_PRECO}</p>
+            )}
+            <p className="new-price">
+              R${" "}
+              {(
+                parseFloat(item.PRODUTO_PRECO) -
+                parseFloat(item.PRODUTO_DESCONTO ?? 0)
+              )
+                .toPrecision(3)
+                .replace(".", ",")}
+            </p>
+          </div>
+        </span>
+        <div className="card-btns">
+          {QuantityComponent()}
+          <Button
+            click={
+              item.estoque > 0 || item.estoque || item.estoque !== "0"
+                ? click
+                : null
+            }
+            placeholder={title}
+          />
         </div>
-     
-      <Modal item={item} open={modal} close={handleOpenCloseModal} />
+      </div>
+      {showModal && (
+        <Modal item={item} open={modal} close={handleOpenCloseModal} />
+      )}
     </>
   );
 };

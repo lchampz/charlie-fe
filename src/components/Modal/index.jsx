@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "../../hooks/useCart";
 import { useProduct } from "../../hooks/useProduct";
 import Close from "../../assets/close.png";
@@ -31,10 +31,12 @@ const Modal = ({ item = props, open, close }) => {
   const [img, setImg] = useState(item.imagens[0]?.IMAGEM_URL || "");
   const { product } = useProduct();
   const { addToCart } = useCart();
+  
 
   const handleChangeQuantity = (e) => {
     const value = Number(e.target.value);
-    if (isNaN(value) || value < 1 || value > (item.estoque.PRODUTO_QTD ?? 0)) return;
+    if (isNaN(value) || value < 1 || value > (item.estoque.PRODUTO_QTD ?? 0))
+      return;
     setQuantity(value);
   };
 
@@ -43,7 +45,7 @@ const Modal = ({ item = props, open, close }) => {
       (product) => item.PRODUTO_ID === product.PRODUTO_ID
     );
 
-    if(findedItem) addToCart(findedItem, quantity);
+    if (findedItem) addToCart(findedItem, quantity);
   };
 
   const handleChangeImg = (url) => {
@@ -67,7 +69,7 @@ const Modal = ({ item = props, open, close }) => {
                 <div className="modal-img">
                   <img src={img}></img>
                 </div>
-              </div> 
+              </div>
               <div className="modal-desc">
                 <div className="description">
                   <p>Descrição</p>
@@ -78,7 +80,12 @@ const Modal = ({ item = props, open, close }) => {
                   <div className="modal-btn-wrapper">
                     <div className="storage">
                       <p>SELECIONA A QUANTIDADE</p>
-                      <p>Estoque: {item?.estoque?.PRODUTO_QTD  ? item?.estoque?.PRODUTO_QTD : 0}</p>
+                      <p>
+                        Estoque:{" "}
+                        {item?.estoque?.PRODUTO_QTD
+                          ? item?.estoque?.PRODUTO_QTD
+                          : 0}
+                      </p>
                     </div>
                     <div className="btn-add">
                       <input
