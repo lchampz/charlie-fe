@@ -6,8 +6,6 @@
     background-image: url(../../assets/backgroud.png);
     background-size: 70%;
     overflow-x: hidden;
-    font-family: $font-family;
-    overflow: hidden;
   }
   
   .banner {
@@ -117,5 +115,9 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+  }
+
+  .exit img{
+    width: 20px;
   }
 }

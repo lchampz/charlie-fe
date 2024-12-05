@@ -23,14 +23,15 @@
       padding: 1rem;
       margin: 1rem;
       text-align: center;
-      background-color: $pink;
+      background-color: $brown;
       color: white;
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      border: none;
 
       &:hover {
-        background-color: $dark-pink;
+        background-color: $light-brown;
       }
     }
 
@@ -39,7 +40,6 @@
       gap: 30px;
       align-items: stretch;
       justify-content: center;
-
       flex-wrap: wrap;
       flex: 1;
       padding: 20px 0px;
@@ -47,7 +47,7 @@
   }
 
   .column:first-child {
-    width: 15%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,7 +75,7 @@
         font-variant: small-caps;
         font-size: larger;
         gap: 10px;
-				font-family: poppins;
+				font-family: $font-family;
 				font-size: 1rem;
       }
 
